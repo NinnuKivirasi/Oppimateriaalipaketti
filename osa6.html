@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,6 @@
 </head>
  
 <body>
-<a class="skip" href="#main">Skip to content</a>
  
 <!-- ===== HEADER ===== -->
 <header class="site-header">
@@ -37,7 +35,7 @@
  
   <!-- ===== HERO ===== -->
   <section class="hero">
-    <div class=""">
+    <div class="headline"">
         <h1>Kriittinen ajattelu</h1>
             <ul>
                 <li>Aikuinen ottaa lähikuvia esimerkiksi dinosauruksista tai leikkiautoista</li>
@@ -51,14 +49,14 @@
 
 <section class="ct-section" id="isitreal">
   <div class="ct-wrap">
-    <h2>Look closely: is it real?</h2>
+    <h2>Katso tarksti: onko se todellinen?</h2>
     <p class="ct-muted">
-      Show a very close picture of a toy and ask the children what they think. Then show the wider picture and talk about what changed.
+      Näytä todella lähellä oleva kuva leluista ja kysy lapsilta mitä he ajattelevat. Näytä sitten laajempi kuva ja keskustele siitä, mitä on muuttunut.
     </p>
 
     <div class="ct-modes" role="group" aria-label="Who is using this">
-      <button class="ct-btn" type="button" data-act="mode" data-mode="setup" aria-pressed="true">🧑‍🏫 Educator: set up</button>
-      <button class="ct-btn" type="button" data-act="mode" data-mode="show" aria-pressed="false">👀 Show to the kids</button>
+      <button class="ct-btn" type="button" data-act="mode" data-mode="setup" aria-pressed="true">🧑‍🏫 Aikuinen: valmistele</button>
+      <button class="ct-btn" type="button" data-act="mode" data-mode="show" aria-pressed="false">👀 Näytä lapsille</button>
     </div>
 
     <div class="ct-card" id="ctRoot">
@@ -66,12 +64,12 @@
       <!-- ===== Set up ===== -->
       <div id="ctSetup">
         <ol class="ct-steps">
-          <li>Take a <strong>very close</strong> picture of a toy, so you cannot see where it is.</li>
-          <li>Take a second picture from <strong>further away</strong>, so you can see the room around the toy.</li>
+          <li>Ota <strong>hyvin lähellä</strong> oleva kuva leluista, jotta et voi nähdä, missä se on.</li>
+          <li>Ota toinen kuva <strong>etäältä</strong>, jotta voit nähdä huoneen ympärillä olevat esineet.</li>
         </ol>
         <div id="ctPairs"></div>
         <div class="ct-row" style="margin-top:1rem">
-          <button class="ct-btn ct-ghost" type="button" data-act="addpair" id="ctAdd">➕ Add another toy</button>
+          <button class="ct-btn ct-ghost" type="button" data-act="addpair" id="ctAdd">➕ Lisää toinen lelu</button>
         </div>
         <p class="ct-msg" id="ctSetupMsg" role="status" aria-live="polite"></p>
       </div>
@@ -88,13 +86,13 @@
 
 <!-- Camera pop-up -->
 <dialog class="ct-dialog" id="ctCam" aria-labelledby="ctCamTitle">
-  <h3 id="ctCamTitle">Take a picture</h3>
+  <h3 id="ctCamTitle">Ota kuva</h3>
   <video id="ctCamVideo" playsinline muted></video>
   <p class="ct-msg" id="ctCamMsg" role="status" aria-live="polite"></p>
   <div class="ct-row">
-    <button class="ct-btn" type="button" id="ctCamShot" disabled>📸 Take picture</button>
-    <label class="ct-btn ct-ghost">📁 Choose a picture<input class="ct-vh" type="file" accept="image/*" id="ctCamFile"></label>
-    <button class="ct-btn ct-ghost" type="button" id="ctCamCancel">Cancel</button>
+    <button class="ct-btn" type="button" id="ctCamShot" disabled>📸 Ota kuva</button>
+    <label class="ct-btn ct-ghost">📁 Valitse kuva<input class="ct-vh" type="file" accept="image/*" id="ctCamFile"></label>
+    <button class="ct-btn ct-ghost" type="button" id="ctCamCancel">Peruuta</button>
   </div>
 </dialog>
 
@@ -116,8 +114,8 @@ function ctStart() {
 
   /* ================= TEXTS (edit here) ================= */
   var MAX_PAIRS = 6;
-  var PROMPT_BEFORE = "Look closely. Do you think this is real? Why?";
-  var PROMPT_AFTER  = "Now we can see more. What do you notice?";
+  var PROMPT_BEFORE = "Katso tarkasti. Miten se näyttää? Miksi?";
+  var PROMPT_AFTER  = "Nyt voimme nähdä enemmän. Mitä huomaat?";
 
   var $ = function (id) { return document.getElementById(id); };
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
@@ -140,10 +138,10 @@ function ctStart() {
   }
   function camError(err) {
     var n = err && err.name;
-    if (window.isSecureContext === false) return "The camera only works on a secure page (https://). You can still press “Choose a picture”.";
-    if (n === "NotAllowedError" || n === "SecurityError") return "The camera is blocked. Allow it in the browser, or open this page in its own tab. You can also press “Choose a picture”.";
-    if (n === "NotReadableError") return "Another program is using the camera. Close it and try again.";
-    return "No camera was found. You can press “Choose a picture”.";
+    if (window.isSecureContext === false) return "Kamera ei toimi ilman https-yhteyttä. Voit silti painaa “Valitse kuva”.";
+    if (n === "NotAllowedError" || n === "SecurityError") return "Kamera on estetty. Salli se selaimessa tai avaa tämä sivu omassa välilehtessä. Voit myös painaa “Valitse kuva”.";
+    if (n === "NotReadableError") return "Toinen ohjelma käyttää kameraa. Sulje se ja yritä uudelleen.";
+    return "Kameraa ei löytynyt. Voit painaa “Valitse kuva”.";
   }
   function openCamera(title, cb) {
     onPicture = cb;
@@ -172,7 +170,7 @@ function ctStart() {
     if (!f) return;
     var url = URL.createObjectURL(f), img = new Image();
     img.onload = function () { URL.revokeObjectURL(url); camFile.value = ""; gotPicture(fit(img, 1600)); };
-    img.onerror = function () { camMsg.textContent = "This file cannot be opened. Try a JPG or PNG picture."; };
+    img.onerror = function () { camMsg.textContent = "Tätä tiedostoa ei voi avata. Kokeile JPG- tai PNG-kuvaa."; };
     img.src = url;
   });
 
@@ -197,12 +195,12 @@ function ctStart() {
 
   function renderSetup() {
     pairsEl.innerHTML = pairs.map(function (p, i) {
-      return '<div class="ct-pair"><h3>Toy ' + (i + 1) + (ready(p) ? " ✓" : "") + "</h3>" +
-        '<div class="ct-slots">' + slot(p, i, "close", "1. Very close picture", "Take close picture") +
-        slot(p, i, "wide", "2. Wider picture", "Take wider picture") + "</div>" +
-        "<label>Notes for me (the kids do not see this)</label>" +
-        '<textarea data-note="' + i + '" maxlength="300" placeholder="For example: toy dinosaur from the play corner">' + esc(p.note) + "</textarea>" +
-        (pairs.length > 1 ? '<button class="ct-link" type="button" data-act="rm" data-i="' + i + '">Remove this toy</button>' : "") + "</div>";
+      return '<div class="ct-pair"><h3>Lelu ' + (i + 1) + (ready(p) ? " ✓" : "") + "</h3>" +
+        '<div class="ct-slots">' + slot(p, i, "close", "1. Lähikuvitus", "Ota lähikuva") +
+        slot(p, i, "wide", "2. Isompi kuva", "Ota isompi kuva") + "</div>" +
+        "<label>Muistiinpanot (lapset eivät näe tätä)</label>" +
+        '<textarea data-note="' + i + '" maxlength="300" placeholder="Esimerkiksi: lelu dinosaurus leikkialueella">' + esc(p.note) + "</textarea>" +
+        (pairs.length > 1 ? '<button class="ct-link" type="button" data-act="rm" data-i="' + i + '">Poista tämä lelu</button>' : "") + "</div>";
     }).join("");
     addBtn.disabled = pairs.length >= MAX_PAIRS;
   }
@@ -212,14 +210,14 @@ function ctStart() {
     var list = readyList();
     if (!list.length) {
       tabsEl.innerHTML = "";
-      bodyEl.innerHTML = '<div class="ct-empty">Nothing to show yet. Press “Educator: set up” and take a close picture and a wider picture of a toy.</div>';
+      bodyEl.innerHTML = '<div class="ct-empty">Vielä täällä ei ole mitään. Paina "Aikuinen: valmistele" ja ota lähikuva sekä isompi kuva lelusta.</div>';
       return;
     }
     if (list.indexOf(cur) < 0) { cur = list[0]; revealed = false; }
     var p = pairs[cur], pos = list.indexOf(cur);
 
     tabsEl.innerHTML = list.map(function (i, n) {
-      return '<button class="ct-btn ct-ghost" type="button" data-act="goto" data-i="' + i + '" aria-pressed="' + (i === cur) + '">Picture ' + (n + 1) + "</button>";
+      return '<button class="ct-btn ct-ghost" type="button" data-act="goto" data-i="' + i + '" aria-pressed="' + (i === cur) + '">Kuva ' + (n + 1) + "</button>";
     }).join("");
 
     var fsOk = document.fullscreenEnabled || document.webkitFullscreenEnabled;
@@ -230,10 +228,10 @@ function ctStart() {
         '<img class="ct-close" src="' + p.close + '" alt="' + (revealed ? "" : "A close picture of a toy") + '">' +
       "</div>" +
       '<div class="ct-controls">' +
-        '<button class="ct-btn ct-ghost" type="button" data-act="prev"' + (pos === 0 ? " disabled" : "") + ">◀ Previous</button>" +
-        '<button class="ct-btn ct-big" type="button" data-act="reveal">' + (revealed ? "↩ Back to the close picture" : "👀 Show the whole picture") + "</button>" +
-        '<button class="ct-btn ct-ghost" type="button" data-act="next"' + (pos === list.length - 1 ? " disabled" : "") + ">Next ▶</button>" +
-        (fsOk ? '<button class="ct-btn ct-ghost" type="button" data-act="fs">⛶ Full screen</button>' : "") +
+        '<button class="ct-btn ct-ghost" type="button" data-act="prev"' + (pos === 0 ? " disabled" : "") + ">◀ Edellinen</button>" +
+        '<button class="ct-btn ct-big" type="button" data-act="reveal">' + (revealed ? "↩ Takaisin lähikuvaan" : "👀 Näytä koko kuva") + "</button>" +
+        '<button class="ct-btn ct-ghost" type="button" data-act="next"' + (pos === list.length - 1 ? " disabled" : "") + ">Seuraava ▶</button>" +
+        (fsOk ? '<button class="ct-btn ct-ghost" type="button" data-act="fs">⛶ Koko näyttö</button>' : "") +
       "</div>";
   }
 
@@ -245,7 +243,7 @@ function ctStart() {
     stage.classList.toggle("ct-open", revealed);
     $("ctPrompt").textContent = revealed ? PROMPT_AFTER : PROMPT_BEFORE;
     var btn = bodyEl.querySelector('[data-act="reveal"]');
-    btn.textContent = revealed ? "↩ Back to the close picture" : "👀 Show the whole picture";
+    btn.textContent = revealed ? "↩ Takaisin lähikuvaan" : "👀 Näytä koko kuva";
   }
 
   function render() {
@@ -270,10 +268,10 @@ function ctStart() {
       render();
     } else if (act === "take") {
       var k = b.getAttribute("data-k");
-      openCamera(k === "close" ? "Take a very close picture" : "Take a wider picture", function (d) {
+      openCamera(k === "close" ? "Ota lähikuva" : "Ota isompi kuva", function (d) {
         pairs[i][k] = d;
         var p = pairs[i];
-        setupMsg.textContent = ready(p) ? "Toy " + (i + 1) + " is ready ✓" : (k === "close" ? "Now take the wider picture." : "Now take the close picture.");
+        setupMsg.textContent = ready(p) ? "Lelu " + (i + 1) + " on valmis ✓" : (k === "close" ? "Ota nyt isompi kuva." : "Ota nyt lähikuva.");
         renderSetup();
       });
     } else if (act === "addpair") {

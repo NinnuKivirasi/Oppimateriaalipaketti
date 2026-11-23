@@ -113,7 +113,7 @@ p { margin: 0 0 1em; max-width: 68ch; }
 a { color: var(--brand); }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 .wrap { width: min(100% - 2rem, var(--max)); margin-inline: auto; }
-.headline { width: 80%; margin-inline: auto; }
+.headline { width: 70%; margin-inline: auto; }
 section { padding: 3.5rem 0; }
 .muted { color: var(--muted); }
 

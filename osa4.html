@@ -50,13 +50,13 @@
     <div class="ph-block" id="phFind">
       <h2>Etsi pieni kuva</h2>
       <p class="ph-muted">
-        <strong>Aikuinen:</strong> ota iso kuva, sitten ota pieniä kuvia asioista siinä ja merkkaa missä kukin on.
-        <strong>Lapset:</strong> katso pientä kuvaa ja napauta paikka, jossa se löytyy suuresta kuvasta.
+        <strong>Aikuinen:</strong> ota iso kuva, sitten ota pieniä kuvia asioista siinä ja merkkaa missä kukin on.</p>
+        <p class="ph-muted"><strong>Lapset:</strong> katso pientä kuvaa ja napauta paikka, jossa se löytyy suuresta kuvasta.
       </p>
 
       <div class="ph-modes" role="group" aria-label="Who is using this">
-        <button class="ph-btn" type="button" data-act="mode" data-mode="setup" aria-pressed="true">🧑‍🏫 Aikuinen: set up</button>
-        <button class="ph-btn" type="button" data-act="mode" data-mode="play" aria-pressed="false">🧒 Lapset: play</button>
+        <button class="ph-btn" type="button" data-act="mode" data-mode="setup" aria-pressed="true">🧑‍🏫 Aikuinen: valmistele</button>
+        <button class="ph-btn" type="button" data-act="mode" data-mode="play" aria-pressed="false">🧒 Lapset: pelaa</button>
       </div>
 
       <div class="ph-card">
@@ -159,10 +159,10 @@ function phStart() {
 
   function camError(err) {
     var n = err && err.name;
-    if (window.isSecureContext === false) return "The camera only works on a secure page (https://). You can still press “Choose a picture”.";
-    if (n === "NotAllowedError" || n === "SecurityError") return "The camera is blocked. Allow it in the browser, or open this page in its own tab. You can also press “Choose a picture”.";
-    if (n === "NotReadableError") return "Another program is using the camera. Close it and try again.";
-    return "No camera was found. You can press “Choose a picture”.";
+    if (window.isSecureContext === false) return " Kamera toimii vain turvallisella sivulla (https://). Voit silti painaa “Valitse kuva”.";
+    if (n === "NotAllowedError" || n === "SecurityError") return "Kamera on estetty. Salli se selaimessa tai avaa tämä sivu omassa välilehtessä. Voit myös painaa “Valitse kuva”.";
+    if (n === "NotReadableError") return "Toinen ohjelma käyttää kameraa. Sulje se ja yritä uudelleen.";
+    return "Kameraa ei löydy. Voit painaa “Valitse kuva”.";
   }
 
   function openCamera(title, cb) {
@@ -195,7 +195,7 @@ function phStart() {
     if (!f) return;
     var url = URL.createObjectURL(f), img = new Image();
     img.onload = function () { URL.revokeObjectURL(url); camFile.value = ""; gotPicture(fit(img, 1280)); };
-    img.onerror = function () { camMsg.textContent = "This file cannot be opened. Try a JPG or PNG picture."; };
+    img.onerror = function () { camMsg.textContent = "Tätä tiedostoa ei voi avata. Kokeile JPG- tai PNG-kuvaa."; };
     img.src = url;
   });
 
@@ -234,14 +234,14 @@ function phStart() {
     }
     tabsEl.innerHTML = scenes.map(function (s, i) {
       if (mode === "play" && !ready(s)) return "";
-      return '<button class="ph-btn ph-ghost" type="button" data-act="tab" data-i="' + i + '" aria-pressed="' + (i === cur) + '">Picture ' + (i + 1) + '</button>';
+      return '<button class="ph-btn ph-ghost" type="button" data-act="tab" data-i="' + i + '" aria-pressed="' + (i === cur) + '">Kuva ' + (i + 1) + '</button>';
     }).join("");
 
     // big picture
     if (!sc.big || (mode === "play" && !ready(sc))) {
       stageWrap.innerHTML = '<div class="ph-empty">' + (mode === "play"
-        ? "Nothing to play yet. Ask the educator to set up a picture."
-        : "No big picture yet. Press “Take big picture”.") + '</div>';
+        ? "Ei vielä pelattavaa kuvaa. Pyydä opetusta asettamaan kuva."
+        : "Ei vielä suurta kuvaa. Paina “Ota suuri kuva”.") + '</div>';
     } else {
       var marks = "";
       sc.items.forEach(function (it, i) {
@@ -250,29 +250,29 @@ function phStart() {
         else if (it.found) marks += mark(it.x, it.y, "ph-ok", "✓");
       });
       if (flash) marks += flash.hint ? mark(flash.x, flash.y, "ph-hint", "") : mark(flash.x, flash.y, flash.ok ? "ph-ok" : "ph-no", flash.ok ? "✓" : "✖");
-      stageWrap.innerHTML = '<div class="ph-stage' + (marking >= 0 ? " ph-marking" : "") + '" id="phStage" aria-label="Big picture">' +
-        '<img src="' + sc.big + '" alt="Big picture" draggable="false">' + marks + '</div>';
+      stageWrap.innerHTML = '<div class="ph-stage' + (marking >= 0 ? " ph-marking" : "") + '" id="phStage" aria-label="Suuri kuva">' +
+        '<img src="' + sc.big + '" alt="Suuri kuva" draggable="false">' + marks + '</div>';
     }
 
     // buttons below
     var html = "";
     if (mode === "setup") {
       html += '<div class="ph-row">' +
-        '<button class="ph-btn" type="button" data-act="big">📷 ' + (sc.big ? "Retake" : "Take") + ' big picture</button>' +
-        '<button class="ph-btn ph-ghost" type="button" data-act="add"' + (sc.items.length >= MAX_ITEMS ? " disabled" : "") + '>➕ Add small picture (' + sc.items.length + '/' + MAX_ITEMS + ')</button>' +
+        '<button class="ph-btn" type="button" data-act="big">📷 ' + (sc.big ? "Uudelleen otetaan" : "Ota") + ' suuri kuva</button>' +
+        '<button class="ph-btn ph-ghost" type="button" data-act="add"' + (sc.items.length >= MAX_ITEMS ? " disabled" : "") + '>➕ Lisää pieni kuva (' + sc.items.length + '/' + MAX_ITEMS + ')</button>' +
         '</div><ul class="ph-items">';
       sc.items.forEach(function (it, i) {
-        html += '<li class="ph-item"><img src="' + it.img + '" alt="Small picture ' + (i + 1) + '">' +
-          '<div><strong>Small picture ' + (i + 1) + '</strong><br><span class="ph-muted">' + (placed(it) ? "Place marked ✓" : "Place not marked yet") + '</span></div>' +
-          '<button class="ph-btn ph-ghost" type="button" data-act="mark" data-i="' + i + '" aria-pressed="' + (marking === i) + '">📍 Mark place</button>' +
-          '<button class="ph-link" type="button" data-act="rm" data-i="' + i + '">Remove</button></li>';
+        html += '<li class="ph-item"><img src="' + it.img + '" alt="Pieni kuva ' + (i + 1) + '">' +
+          '<div><strong>Pieni kuva ' + (i + 1) + '</strong><br><span class="ph-muted">' + (placed(it) ? "Paikka merkitty ✓" : "Paikka ei merkitty vielä") + '</span></div>' +
+          '<button class="ph-btn ph-ghost" type="button" data-act="mark" data-i="' + i + '" aria-pressed="' + (marking === i) + '">📍 Merkitse paikka</button>' +
+          '<button class="ph-link" type="button" data-act="rm" data-i="' + i + '">Poista</button></li>';
       });
       html += "</ul>";
     } else if (ready(sc)) {
-      html += '<div class="ph-thumbs" role="group" aria-label="Small pictures">';
+      html += '<div class="ph-thumbs" role="group" aria-label="Pienet kuvat">';
       sc.items.forEach(function (it, i) {
         if (!placed(it)) return;
-        html += '<button class="ph-thumb' + (it.found ? " ph-found" : "") + '" type="button" data-act="pick" data-i="' + i + '" aria-pressed="' + (sel === i) + '" aria-label="Small picture ' + (i + 1) + (it.found ? ", found" : "") + '"><img src="' + it.img + '" alt=""></button>';
+        html += '<button class="ph-thumb' + (it.found ? " ph-found" : "") + '" type="button" data-act="pick" data-i="' + i + '" aria-pressed="' + (sel === i) + '" aria-label="Pieni kuva ' + (i + 1) + (it.found ? ", löytyi" : "") + '"><img src="' + it.img + '" alt=""></button>';
       });
       html += '</div><div class="ph-row">' +
         '<button class="ph-btn ph-ghost" type="button" data-act="hint">💡 Show me</button>' +
@@ -289,17 +289,17 @@ function phStart() {
 
   function guess(x, y, w, h) {
     var sc = S();
-    if (sel < 0) { say("First tap a small picture below."); return; }
+    if (sel < 0) { say("Ensin valitse pieni kuva alla."); return; }
     var it = sc.items[sel];
     if (!it || it.found) return;
     var dx = (x - it.x) * w, dy = (y - it.y) * h;
     if (Math.sqrt(dx * dx + dy * dy) <= HIT * w) {
       it.found = true;
       sel = firstOpen();
-      say(sel < 0 ? "You found them all! 🎉🎉🎉" : "Yes! You found it! 🎉 Now pick the next small picture.");
+      say(sel < 0 ? "Löysit kaikki! 🎉🎉🎉" : "Löysit sen! 🎉 Valitse seuraava pieni kuva.");
       setFlash({ x: it.x, y: it.y, ok: true }, 1200);
     } else {
-      say("Not here. Try again!");
+      say("Ei tässä. Yritä uudelleen!");
       setFlash({ x: x, y: y, ok: false }, 900);
     }
     render();
@@ -312,10 +312,10 @@ function phStart() {
       var r = stage.getBoundingClientRect();
       var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
       if (mode === "setup") {
-        if (marking < 0) { say("Press “Mark place” on a small picture first."); return; }
+        if (marking < 0) { say("Paina “Merkitse paikka” pieniin kuviin ensin."); return; }
         sc.items[marking].x = x; sc.items[marking].y = y;
         marking = -1;
-        say("Place marked ✓");
+        say("Paikka merkitty ✓");
         render();
       } else {
         guess(x, y, r.width, r.height);
@@ -330,42 +330,42 @@ function phStart() {
     if (act === "mode") {
       mode = b.getAttribute("data-mode");
       marking = -1; flash = null;
-      if (mode === "play") { sel = firstOpen(); say(sel < 0 && !ready(S()) ? "" : "Tap a small picture, then tap where it is in the big picture."); } else say("");
+      if (mode === "play") { sel = firstOpen(); say(sel < 0 && !ready(S()) ? "" : "Napauta pientä kuvaa, sitten napauta paikka, jossa se löytyy suuresta kuvasta."); } else say("");
       render();
     } else if (act === "tab") {
       cur = i; marking = -1; flash = null; sel = firstOpen(); say(""); render();
     } else if (act === "big") {
-      openCamera("Take the big picture", function (d) {
+      openCamera("Ota suuri kuva", function (d) {
         sc.big = d;
         sc.items.forEach(function (it) { it.x = it.y = null; it.found = false; });
         marking = -1;
-        say(sc.items.length ? "New big picture. Mark the place of each small picture again." : "Now add small pictures.");
+        say(sc.items.length ? "Uusi suuri kuva. Merkitse jokaisen pienen kuvan paikka uudelleen." : "Lisää nyt pikkukuvia.");
         render();
       });
     } else if (act === "add") {
-      if (!sc.big) { say("Take the big picture first."); return; }
-      openCamera("Take a small picture", function (d) {
+      if (!sc.big) { say("Ota suuri kuva ensin."); return; }
+      openCamera("Ota pieni kuva", function (d) {
         sc.items.push({ img: d, x: null, y: null, found: false });
         marking = sc.items.length - 1;
-        say("Now tap on the big picture where this small picture is.");
+        say("Nyt napauta suurta kuvaa, jossa tämä pieni kuva sijaitsee.");
         render();
       });
     } else if (act === "mark") {
       marking = (marking === i) ? -1 : i;
-      say(marking >= 0 ? "Tap on the big picture where small picture " + (i + 1) + " is." : "");
+      say(marking >= 0 ? "Napauta suurta kuvaa, jossa pieni kuva " + (i + 1) + " sijaitsee." : "");
       render();
     } else if (act === "rm") {
       sc.items.splice(i, 1); marking = -1; sel = -1; say(""); render();
     } else if (act === "pick") {
-      sel = i; say("Now tap where it is in the big picture."); render();
+      sel = i; say("Nyt napauta paikka, jossa se löytyy suuresta kuvasta."); render();
     } else if (act === "hint") {
-      if (sel < 0) { say("First tap a small picture below."); return; }
+      if (sel < 0) { say("Ensin valitse pieni kuva alla."); return; }
       var it = sc.items[sel];
       if (it && !it.found) { setFlash({ x: it.x, y: it.y, hint: true }, 2500); render(); }
     } else if (act === "again") {
       sc.items.forEach(function (it) { it.found = false; });
       sel = firstOpen(); flash = null;
-      say("Let's play again!"); render();
+      say("Pelataan uudelleen!"); render();
     }
   });
 
@@ -379,18 +379,18 @@ function phStart() {
 
   function renderPhotos() {
     slotsEl.innerHTML = photos.map(function (p, i) {
-      return '<div class="ph-slot"><div class="ph-slot-img">' + (p ? '<img src="' + p + '" alt="My picture ' + (i + 1) + '">' : "<span>Picture " + (i + 1) + "</span>") + '</div>' +
-        '<button class="ph-btn' + (p ? " ph-ghost" : "") + '" type="button" data-b="take" data-i="' + i + '">📷 ' + (p ? "Take again" : "Take picture") + '</button>' +
-        (p ? '<button class="ph-link" type="button" data-b="rm" data-i="' + i + '">Remove</button>' : "") + '</div>';
+      return '<div class="ph-slot"><div class="ph-slot-img">' + (p ? '<img src="' + p + '" alt="Minun kuva ' + (i + 1) + '">' : "<span>Kuva " + (i + 1) + "</span>") + '</div>' +
+        '<button class="ph-btn' + (p ? " ph-ghost" : "") + '" type="button" data-b="take" data-i="' + i + '">📷 ' + (p ? "Ota uudelleen" : "Ota kuva") + '</button>' +
+        (p ? '<button class="ph-link" type="button" data-b="rm" data-i="' + i + '">Poista</button>' : "") + '</div>';
     }).join("");
 
     var list = photos.filter(Boolean);
     polsEl.setAttribute("data-n", String(list.length));
     polsEl.innerHTML = list.length
-      ? list.map(function (p, i) { return '<div class="ph-pol"><img src="' + p + '" alt="Picture ' + (i + 1) + ' on the page"></div>'; }).join("")
-      : '<p class="ph-sheet-empty">Your pictures will show here.</p>';
+      ? list.map(function (p, i) { return '<div class="ph-pol"><img src="' + p + '" alt=" Minun kuva ' + (i + 1) + ' sivulla"></div>'; }).join("")
+      : '<p class="ph-sheet-empty">Kuviasi näkyvät täällä.</p>';
     printBtn.disabled = !list.length;
-    printNote.textContent = list.length ? "" : "Take at least one picture first.";
+    printNote.textContent = list.length ? "" : "Ota ensin vähintään yksi kuva.";
   }
 
   slotsEl.addEventListener("click", function (e) {

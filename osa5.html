@@ -1,5 +1,3 @@
-
-Educational material package · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +13,6 @@ Educational material package · HTML
 </head>
  
 <body>
-<a class="skip" href="#main">Skip to content</a>
  
 <!-- ===== HEADER ===== -->
 <header class="site-header">
@@ -38,22 +35,20 @@ Educational material package · HTML
 
 
   <section class="hero">
-    <div class="rap">
-        <h1>Kuvatukien kanssa peli/pelit</h1>
-            <ul>
-                <li>Kuvatukipeli: Mikä näistä kuvista on…?</li>
-                <li>tunteet</li>
-                <li>Päivärytmi</li>
-                <li>Ruuat</li>
-                <li>Leikit</li>
-            </ul>
+    <div class="headline">
+        <h1>Kuvatukien tunnistamispeli</h1>
       </div>
   </section>
 
 <section class="ag-section" id="picturegames">
   <div class="ag-wrap">
-    <h2>Picture games</h2>
-    <p class="ag-muted">Choose a game. Look at the clue, then tap the picture that matches it.</p>
+    <h2>Kuva pelit</h2>
+           <p class="ag-muted">Tässä osiossa lapset pääsevät testaamaan kuvatukien tunnistamisen taitoaan. 
+          Alta löydät neljä erilaista peliä, joissa aiheina on erilaisia varhaiskasvatuksessa käytettyjä kuvatukia. 
+          Tämän pelin avulla aikuinen voi havainnoida miten hyvin lapset tunnistavat kuvatukia 
+          ja samalla lapset pääsevät kokeilemaan taitojaan pelin myötä</p>
+    <p>Valitse peli, jonka haluat pelata. Katso vihjettä ja paina kuvaa, joka vastaa mielestäsi sitä.</p>
+
 
     <div class="ag-card">
 
@@ -61,14 +56,14 @@ Educational material package · HTML
       <div id="agMenu">
         <div class="ag-games" id="agGames"></div>
         <div class="ag-options">
-          <label class="ag-check"><input type="checkbox" id="agWords"> <span>Show words under the pictures</span></label>
+          <label class="ag-check"><input type="checkbox" id="agWords"> <span>Näytä sanat kuvien alla</span></label>
         </div>
       </div>
 
       <!-- Playing -->
       <div id="agGame" hidden>
         <div class="ag-top">
-          <button class="ag-btn ag-ghost" type="button" id="agBack">← All games</button>
+          <button class="ag-btn ag-ghost" type="button" id="agBack">← Kaikki pelit</button>
           <div class="ag-dots" id="agDots" aria-hidden="true"></div>
         </div>
         <div class="ag-clue">
@@ -77,17 +72,17 @@ Educational material package · HTML
         </div>
         <div class="ag-choices" id="agChoices"></div>
         <p class="ag-msg" id="agMsg" role="status" aria-live="polite"></p>
-        <button class="ag-btn ag-next" type="button" id="agNext" hidden>Next ➜</button>
+        <button class="ag-btn ag-next" type="button" id="agNext" hidden>Seuraava ➜</button>
       </div>
 
       <!-- Finished -->
       <div class="ag-end" id="agEnd" hidden>
-        <h3 id="agEndTitle">Great job!</h3>
+        <h3 id="agEndTitle">Hienoa työtä!</h3>
         <div class="ag-stars" id="agStars" aria-hidden="true"></div>
         <p id="agEndText"></p>
         <div class="ag-row">
-          <button class="ag-btn" type="button" id="agAgain">↺ Play again</button>
-          <button class="ag-btn ag-ghost" type="button" id="agMenuBtn">All games</button>
+          <button class="ag-btn" type="button" id="agAgain">↺ Pelaa uudelleen</button>
+          <button class="ag-btn ag-ghost" type="button" id="agMenuBtn">Kaikki pelit</button>
         </div>
       </div>
 
@@ -113,37 +108,37 @@ function agStart() {
   var ROUNDS = 8;          // questions in one game
 
   var GAMES = [
-    { id: "food", title: "Food", icon: "🍎",
-      question: "Which picture is this food?",
+    { id: "food", title: "Ruoka", icon: "🍎",
+      question: "Mikä kuva on tämä ruoka?",
       items: [
-        { word: "Apple",  pic: "🍎" }, { word: "Banana", pic: "🍌" },
-        { word: "Bread",  pic: "🍞" }, { word: "Milk",   pic: "🥛" },
-        { word: "Cheese", pic: "🧀" }, { word: "Carrot", pic: "🥕" },
-        { word: "Egg",    pic: "🥚" }, { word: "Pizza",  pic: "🍕" }
+        { word: "Omena",  pic: "🍎" }, { word: "Banaani", pic: "🍌" },
+        { word: "Leipä",  pic: "🍞" }, { word: "Maito",   pic: "🥛" },
+        { word: "Juusto", pic: "🧀" }, { word: "Porkkana", pic: "🥕" },
+        { word: "Muna",    pic: "🥚" }, { word: "Pizza",  pic: "🍕" }
       ] },
-    { id: "pets", title: "Pets", icon: "🐶",
-      question: "Which picture is this pet?",
+    { id: "pets", title: "Lemmikit", icon: "🐶",
+      question: "Mikä kuva on tämä kissa?",
       items: [
-        { word: "Dog",     pic: "🐶" }, { word: "Cat",    pic: "🐱" },
-        { word: "Rabbit",  pic: "🐰" }, { word: "Fish",   pic: "🐟" },
-        { word: "Hamster", pic: "🐹" }, { word: "Bird",   pic: "🐦" },
-        { word: "Turtle",  pic: "🐢" }, { word: "Horse",  pic: "🐴" }
+        { word: "Koira",     pic: "🐶" }, { word: "Kissa",    pic: "🐱" },
+        { word: "Kani",  pic: "🐰" }, { word: "Kala",   pic: "🐟" },
+        { word: "Hamsteri", pic: "🐹" }, { word: "Lintu",   pic: "🐦" },
+        { word: "Kilpikonna",  pic: "🐢" }, { word: "Hevonen",  pic: "🐴" }
       ] },
-    { id: "feelings", title: "Feelings", icon: "😊",
-      question: "Which picture shows this feeling?",
+    { id: "feelings", title: "Tunteet", icon: "😊",
+      question: "Mikä kuva näyttää tämän tunteen?",
       items: [
-        { word: "Happy",     pic: "😀" }, { word: "Sad",    pic: "😢" },
-        { word: "Angry",     pic: "😠" }, { word: "Scared", pic: "😨" },
-        { word: "Surprised", pic: "😲" }, { word: "Tired",  pic: "😴" },
-        { word: "Sick",      pic: "🤒" }, { word: "Loving", pic: "🥰" }
+        { word: "Iloinen",     pic: "😀" }, { word: "Suru",    pic: "😢" },
+        { word: "Vihainen",     pic: "😠" }, { word: "Kauhistunut", pic: "😨" },
+        { word: "Hämmästyneet", pic: "😲" }, { word: "Väsynyt",  pic: "😴" },
+        { word: "Sairas",      pic: "🤒" }, { word: "Rakastava", pic: "🥰" }
       ] },
-    { id: "day", title: "Day rhythm", icon: "⏰",
-      question: "Which picture shows this part of the day?",
+    { id: "day", title: "Päivärytmi", icon: "⏰",
+      question: "Mikä kuvaa tätä toimintaa?",
       items: [
-        { word: "Wake up",      pic: "⏰" }, { word: "Brush teeth", pic: "🪥" },
-        { word: "Breakfast",    pic: "🥣" }, { word: "School",      pic: "🏫" },
-        { word: "Lunch",        pic: "🍽️" }, { word: "Play",        pic: "🧸" },
-        { word: "Bath",         pic: "🛁" }, { word: "Sleep",       pic: "🛏️" }
+        { word: "Herätys",      pic: "⏰" }, { word: "Pestä hampaat", pic: "🪥" },
+        { word: "Aamiainen",    pic: "🥣" }, { word: "Koulu",      pic: "🏫" },
+        { word: "Lounas",        pic: "🍽️" }, { word: "Leikki",        pic: "🧸" },
+        { word: "Kylpy",         pic: "🛁" }, { word: "Nukkuminen",       pic: "🛏️" }
       ] }
   ];
   /* ===================================================================== */
@@ -233,17 +228,17 @@ function agStart() {
       b.classList.add("ag-right");
       results.push(mistakes === 0 ? "star" : "done");
       if (mistakes === 0) stars++;
-      msgEl.textContent = "Yes! Well done! 🎉";
+      msgEl.textContent = "Jes! Hyvin menee! 🎉";
       choicesEl.querySelectorAll(".ag-choice").forEach(function (c) { if (c !== b) c.disabled = true; });
       renderDots();
-      nextBtn.textContent = round === order.length - 1 ? "Finish ➜" : "Next ➜";
+      nextBtn.textContent = round === order.length - 1 ? "Valmis ➜" : "Seuraava ➜";
       nextBtn.hidden = false;
       nextBtn.focus();
     } else {
       mistakes++;
       b.classList.add("ag-wrong");
       b.disabled = true;
-      msgEl.textContent = "Not this one. Try again!";
+      msgEl.textContent = "Ei onnistunut. Yritä uudelleen!";
     }
   });
 
@@ -259,8 +254,8 @@ function agStart() {
     var n = order.length, s = "";
     for (var i = 0; i < n; i++) s += i < stars ? "⭐" : "☆";
     $("agStars").textContent = s;
-    $("agEndTitle").textContent = stars === n ? "Perfect! 🎉" : "Great job! 🎉";
-    $("agEndText").textContent = "You got " + stars + " of " + n + " right the first time.";
+    $("agEndTitle").textContent = stars === n ? "Täydellistä! 🎉" : "Hyvä työ! 🎉";
+    $("agEndText").textContent = "Sait " + stars + " / " + n + " oikein ensimmäisellä kerralla.";
     show("end");
     $("agAgain").focus();
   }
