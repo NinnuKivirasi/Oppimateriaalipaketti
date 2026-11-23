@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course Title – Educational Material Package</title>
+<meta name="description" content="Short description of the educational material package.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,500;7..72,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+ 
+<body>
+<a class="skip" href="#main">Skip to content</a>
+ 
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#">Ninan oppimateriaalipaketti</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Etusivu</a></li>
+        <li><a href="osa1.html">Edellinen</a></li> 
+        <li><a href="osa3.html">Seuraava</a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+ 
+<main id="main">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="headline">
+        <h1>Digitaaliseen teknologiaan tutustuminen </h1>
+      </div>
+  </section>
+
+<section class="tb-section" id="tablet">
+  <div class="tb-wrap">
+
+    <!-- ===== PART 1: What is a tablet? ===== -->
+    <h2>Mikä on tabletti?</h2>
+    <div class="tb-intro">
+      <div>
+        <p>Tabletti on litteä ja kevyt tietokone. Siinä on näyttö, jota voit koskettaa sormillasi. Sen käyttöön ei tarvita hiirtä tai näppäimistöä.</p>
+          Sinä voit käyttää tablettia lukemiseen, piirtämiseen, pelaamiseen, videoiden katseluun, valokuvien ottamiseen ja uusien asioiden oppimiseen. Voitko kantaa sitä mukanasi.</p>
+      </div>
+
+      <div class="tb-card">
+        <h3>Tabletin osat</h3>
+        <ul class="tb-parts">
+          <li><strong>Näyttö:</strong> iso ohut näyttö, jota voit katsoa ja koskea.</li>
+          <li><strong>Kamera:</strong> pieni pyöreä linssi. millä otetaan kuvia ja videoita.</li>
+          <li><strong>Virtanappi:</strong> siitä voit laittaa tabletin päälle ja pois päältä.</li>
+          <li><strong>Äänipainikkeet:</strong> tekee äänestä kovempaa ja hiljempaa.</li>
+          <li><strong>Latausportti:</strong> sinne menee lataus kaapeli, jotta tablettia voi käyttää.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== PART 2: How to tell about a tablet ===== -->
+    <div class="tb-card" style="margin-bottom:3rem">
+      <h3>Kuinka kertoa jollekulle tabletista</h3>
+      <p class="tb-muted">Kuvaile tablettia omin sanoin tai esimerkiksi näillä lauseilla:</p>
+      <ul class="tb-say">
+        <li>Tabletti on <em>litteä</em> ja <em>kevyt</em>.</li>
+        <li>Sillä on <em>kosketusnäyttö</em>, joten käytän sormiani.</li>
+        <li>Voitan käyttää sitä <em>(lukemiseen / piirtämiseen / pelaamiseen / oppimiseen)</em>.</li>
+        <li>Minun suosikkitoimintani tabletilla on ______.</li>
+      </ul>
+    </div>
+
+    <!-- ===== PART 3: Touch the tablet ===== -->
+    <h2>Kosketa tablettia!</h2>
+    <p class="tb-muted">Kosketa muotoa tehdäksesi lisää muotoja. Kosketa muoto-painiketta vaihtaaksesi muotoa. Kosketa väri-painiketta vaihtaaksesi värin.</p>
+
+    <div class="tb-play">
+      <div class="tb-device">
+        <div class="tb-screen" id="tbScreen">
+
+
+
+          <div class="tb-row" role="group" aria-label="Vaihda muotoa">
+            <p class="tb-label">Vaihda muotoa</p>
+            <button class="tb-btn" data-shape="pyöreä" aria-pressed="true">Pyöreä</button>
+            <button class="tb-btn" data-shape="neliö" aria-pressed="false">Neliö</button>
+            <button class="tb-btn" data-shape="kolmio" aria-pressed="false">Kolmio</button>
+            <button class="tb-btn" data-shape="tähti" aria-pressed="false">Tähti</button>
+          </div>
+
+          <div class="tb-row" role="group" aria-label="Vaihda väriä">
+            <p class="tb-label">Vaihda väriä</p>
+            <button class="tb-swatch" data-colour="0" aria-pressed="true"  style="background:#e53935;color:#fff">Punainen</button>
+            <button class="tb-swatch" data-colour="1" aria-pressed="false" style="background:#1e88e5;color:#fff">Sininen</button>
+            <button class="tb-swatch" data-colour="2" aria-pressed="false" style="background:#43a047;color:#fff">Vihreä</button>
+            <button class="tb-swatch" data-colour="3" aria-pressed="false" style="background:#fdd835;color:#14282b">Keltainen</button>
+            <button class="tb-swatch" data-colour="4" aria-pressed="false" style="background:#ec407a;color:#fff">Vaaleanpunainen</button>
+            <button class="tb-swatch" data-colour="5" aria-pressed="false" style="background:#fb8c00;color:#14282b">Oranssi</button>
+          </div>
+
+            <div class="tb-stage">
+            <div class="tb-shapes" id="tbShapes">
+              <button class="tb-shape tb-circle" aria-label="Muoto. Kosketa tehdäksesi lisää muotoja."></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p class="tb-status" id="tbStatus" role="status" aria-live="polite"></p>
+      <button class="tb-reset" id="tbReset" type="button" aria-label=" Aloita alusta"> Aloita alusta</button>
+    </div>
+    <section>
+       <div  class="tb-col-2">
+        <div>
+        <h2>Lapsille omat tabletit</h2>
+          <ul>
+            <li>Tulostakaa tästä vielä kaikille lapsille omat tabletit</li>
+            <li>Antakaa lasten piirtää omaan tablettiinsa kuva</li>
+            <li>Kirjoita viivalle lapsen nimi</li>
+            <li>Leikkaa ja laminoi tabeltit lapsille leikkiin</li>
+            </li>       
+          </ul>
+          </div>
+          <div>
+
+            <a href="tablet-coloured_printable.pdf" target="_blank"><img src="tabletti_kuva.png" width="70%" alt="Kuvassa on tabletin kuva." ></a>
+          </div>
+          </div>
+          </section>
+    </div>
+ 
+  </section>
+ 
+</main>
+ 
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <span>© 2026 Nina Kivirasi. Licence: CC BY 4.0</span>
+    <a href="mailto:contact@example.com">contact@example.com</a>
+  </div>
+</footer>
+</body>
+<script>
+(function () {
+  var colours = [
+    { hex: "#e53935", name: "punainen" },
+    { hex: "#1e88e5", name: "sininen" },
+    { hex: "#43a047", name: "vihreä" },
+    { hex: "#fdd835", name: "keltainen" },
+    { hex: "#ec407a", name: "vaaleanpunainen" },
+    { hex: "#fb8c00", name: "oranssi" }
+  ];
+  var MAX = 12;   // most shapes allowed on the screen (change if you like)
+
+  var box = document.getElementById("tbShapes");
+  var status = document.getElementById("tbStatus");
+  var shapeBtns = document.querySelectorAll("#tbScreen [data-shape]");
+  var colourBtns = document.querySelectorAll("#tbScreen [data-colour]");
+  var reset = document.getElementById("tbReset");
+
+  var shapeColour = 0;
+  var currentShape = "circle";
+
+  function say(text) { status.textContent = text; }
+  function all() { return box.querySelectorAll(".tb-shape:not(.tb-breaking)"); }
+
+  function pop(el) {
+    el.classList.remove("tb-pop");
+    void el.offsetWidth;               // restart the animation
+    el.classList.add("tb-pop");
+  }
+
+  // Make shapes smaller when there are more of them
+  function resize() {
+    var n = all().length;
+    var size = n === 1 ? 170 : n <= 3 ? 120 : n <= 6 ? 90 : 64;
+    box.style.setProperty("--size", size + "px");
+  }
+
+  function paint(el) {
+    el.className = "tb-shape tb-" + currentShape;
+    el.style.backgroundColor = colours[shapeColour].hex;
+  }
+
+  function showButtons() {
+    shapeBtns.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-shape") === currentShape));
+    });
+    colourBtns.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(Number(b.getAttribute("data-colour")) === shapeColour));
+    });
+  }
+
+  function paintAll() {
+    all().forEach(function (el) { paint(el); pop(el); });
+    showButtons();
+  }
+
+  var breakTimers = [];
+  var stage = box.parentNode;
+  var popping = false;   // false = tapping adds shapes, true = tapping pops them
+
+  // Balloon pop: the shape swells, then bursts into bits and a "POP!" word
+  function popShape(el) {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var colour = el.style.backgroundColor;
+    var r = el.getBoundingClientRect();
+    var s = stage.getBoundingClientRect();
+    var x = r.left - s.left + r.width / 2;
+    var y = r.top - s.top + r.height / 2;
+
+    el.classList.remove("tb-pop");
+    el.classList.add("tb-breaking");
+
+    var t = setTimeout(function () {
+      el.remove();
+      resize();
+      if (reduce) return;
+      for (var i = 0; i < 10; i++) {
+        var bit = document.createElement("span");
+        var angle = (Math.PI * 2 * i) / 10 + Math.random() * 0.5;
+        var dist = 50 + Math.random() * 50;
+        bit.className = "tb-bit";
+        bit.style.left = x + "px";
+        bit.style.top = y + "px";
+        bit.style.backgroundColor = colour;
+        bit.style.setProperty("--dx", Math.cos(angle) * dist + "px");
+        bit.style.setProperty("--dy", Math.sin(angle) * dist + "px");
+        bit.style.setProperty("--rot", Math.random() * 360 + "deg");
+        stage.appendChild(bit);
+        setTimeout(function (b) { b.remove(); }.bind(null, bit), 600);
+      }
+      var word = document.createElement("span");
+      word.className = "tb-word";
+      word.textContent = "POP!";
+      word.style.left = x + "px";
+      word.style.top = y + "px";
+      stage.appendChild(word);
+      setTimeout(function () { word.remove(); }, 650);
+    }, reduce ? 0 : 140);
+    breakTimers.push(t);
+  }
+
+  function newShape() {
+    box.innerHTML = "";
+    var el = document.createElement("button");
+    el.setAttribute("aria-label", "Muoto. Paina sitä, niin se kopioituu.");
+    paint(el);
+    box.appendChild(el);
+    resize();
+    pop(el);
+  }
+
+  function setAriaForMode() {
+    all().forEach(function (el) {
+      el.setAttribute("aria-label", popping ? "Muoto. Paina sitä, niin se poksahtaa." : "Muoto. Paina sitä, niin se kopioituu.");
+    });
+  }
+
+  // Tap a shape -> a copy appears. At 12 shapes they start popping, one at a time,
+  // until only one shape is left. Then tapping makes copies again.
+  box.addEventListener("click", function (e) {
+    var el = e.target;
+    if (!el.classList.contains("tb-shape") || el.classList.contains("tb-breaking")) return;
+
+    if (!popping && all().length >= MAX) {
+      popping = true;
+      setAriaForMode();
+    }
+
+    if (popping) {
+      popShape(el);                        // marks it as breaking, so it no longer counts
+      var left = all().length;
+      if (left <= 1) {
+        popping = false;
+        setAriaForMode();
+        say("Pop! Yksi muoto on jäljellä. Paina sitä, niin se kopioituu!");
+      } else {
+        say("Pop! " + left + " muotoa jäljellä.");
+      }
+      return;
+    }
+
+    var copy = el.cloneNode(false);
+    box.appendChild(copy);
+    resize();
+    pop(copy);
+    say("Nyt niitä on " + all().length + " !");
+  });
+
+  // Shape buttons change the SHAPE of every shape
+  shapeBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      currentShape = btn.getAttribute("data-shape");
+      paintAll();
+      say("Muoto on " + currentShape + "!");
+    });
+  });
+
+  // Colour buttons change the COLOUR of every shape
+  colourBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      shapeColour = Number(btn.getAttribute("data-colour"));
+      paintAll();
+      say("Väri on " + colours[shapeColour].name + "!");
+    });
+  });
+
+  // Start again: one red circle
+  reset.addEventListener("click", function () {
+    breakTimers.forEach(clearTimeout);
+    breakTimers = [];
+    popping = false;
+    stage.querySelectorAll(".tb-bit, .tb-word").forEach(function (n) { n.remove(); });
+    shapeColour = 0; currentShape = "circle";
+    newShape();
+    showButtons();
+    say("Kaikki valmiina. Yritä uudelleen!");
+  });
+
+  paint(all()[0]);
+  resize();
+  showButtons();
+})();
+</script>
+
+</html>

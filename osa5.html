@@ -1,0 +1,276 @@
+
+Educational material package · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course Title – Educational Material Package</title>
+<meta name="description" content="Short description of the educational material package.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,500;7..72,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+ 
+<body>
+<a class="skip" href="#main">Skip to content</a>
+ 
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#">Ninan oppimateriaalipaketti</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Etusivu</a></li>
+        <li><a href="osa4.html">Edellinen</a></li> 
+        <li><a href="osa6.html">Seuraava</a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+ 
+<main id="main">
+
+
+  <section class="hero">
+    <div class="rap">
+        <h1>Kuvatukien kanssa peli/pelit</h1>
+            <ul>
+                <li>Kuvatukipeli: Mikä näistä kuvista on…?</li>
+                <li>tunteet</li>
+                <li>Päivärytmi</li>
+                <li>Ruuat</li>
+                <li>Leikit</li>
+            </ul>
+      </div>
+  </section>
+
+<section class="ag-section" id="picturegames">
+  <div class="ag-wrap">
+    <h2>Picture games</h2>
+    <p class="ag-muted">Choose a game. Look at the clue, then tap the picture that matches it.</p>
+
+    <div class="ag-card">
+
+      <!-- Choose a game -->
+      <div id="agMenu">
+        <div class="ag-games" id="agGames"></div>
+        <div class="ag-options">
+          <label class="ag-check"><input type="checkbox" id="agWords"> <span>Show words under the pictures</span></label>
+        </div>
+      </div>
+
+      <!-- Playing -->
+      <div id="agGame" hidden>
+        <div class="ag-top">
+          <button class="ag-btn ag-ghost" type="button" id="agBack">← All games</button>
+          <div class="ag-dots" id="agDots" aria-hidden="true"></div>
+        </div>
+        <div class="ag-clue">
+          <p class="ag-q" id="agQ"></p>
+          <p class="ag-word" id="agWord"></p>
+        </div>
+        <div class="ag-choices" id="agChoices"></div>
+        <p class="ag-msg" id="agMsg" role="status" aria-live="polite"></p>
+        <button class="ag-btn ag-next" type="button" id="agNext" hidden>Next ➜</button>
+      </div>
+
+      <!-- Finished -->
+      <div class="ag-end" id="agEnd" hidden>
+        <h3 id="agEndTitle">Great job!</h3>
+        <div class="ag-stars" id="agStars" aria-hidden="true"></div>
+        <p id="agEndText"></p>
+        <div class="ag-row">
+          <button class="ag-btn" type="button" id="agAgain">↺ Play again</button>
+          <button class="ag-btn ag-ghost" type="button" id="agMenuBtn">All games</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+ 
+</main>
+ 
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <span>© 2026 Nina Kivirasi. Licence: CC BY 4.0</span>
+    <a href="mailto:contact@example.com">contact@example.com</a>
+  </div>
+</footer>
+</body>
+<script>
+(function () {
+function agStart() {
+
+  /* ================= SETTINGS AND PICTURES (edit here) ================= */
+  var ROUNDS = 8;          // questions in one game
+
+  var GAMES = [
+    { id: "food", title: "Food", icon: "🍎",
+      question: "Which picture is this food?",
+      items: [
+        { word: "Apple",  pic: "🍎" }, { word: "Banana", pic: "🍌" },
+        { word: "Bread",  pic: "🍞" }, { word: "Milk",   pic: "🥛" },
+        { word: "Cheese", pic: "🧀" }, { word: "Carrot", pic: "🥕" },
+        { word: "Egg",    pic: "🥚" }, { word: "Pizza",  pic: "🍕" }
+      ] },
+    { id: "pets", title: "Pets", icon: "🐶",
+      question: "Which picture is this pet?",
+      items: [
+        { word: "Dog",     pic: "🐶" }, { word: "Cat",    pic: "🐱" },
+        { word: "Rabbit",  pic: "🐰" }, { word: "Fish",   pic: "🐟" },
+        { word: "Hamster", pic: "🐹" }, { word: "Bird",   pic: "🐦" },
+        { word: "Turtle",  pic: "🐢" }, { word: "Horse",  pic: "🐴" }
+      ] },
+    { id: "feelings", title: "Feelings", icon: "😊",
+      question: "Which picture shows this feeling?",
+      items: [
+        { word: "Happy",     pic: "😀" }, { word: "Sad",    pic: "😢" },
+        { word: "Angry",     pic: "😠" }, { word: "Scared", pic: "😨" },
+        { word: "Surprised", pic: "😲" }, { word: "Tired",  pic: "😴" },
+        { word: "Sick",      pic: "🤒" }, { word: "Loving", pic: "🥰" }
+      ] },
+    { id: "day", title: "Day rhythm", icon: "⏰",
+      question: "Which picture shows this part of the day?",
+      items: [
+        { word: "Wake up",      pic: "⏰" }, { word: "Brush teeth", pic: "🪥" },
+        { word: "Breakfast",    pic: "🥣" }, { word: "School",      pic: "🏫" },
+        { word: "Lunch",        pic: "🍽️" }, { word: "Play",        pic: "🧸" },
+        { word: "Bath",         pic: "🛁" }, { word: "Sleep",       pic: "🛏️" }
+      ] }
+  ];
+  /* ===================================================================== */
+
+  var $ = function (id) { return document.getElementById(id); };
+  var menu = $("agMenu"), gameEl = $("agGame"), endEl = $("agEnd");
+  var gamesEl = $("agGames"), wordsBox = $("agWords");
+  var qEl = $("agQ"), wordEl = $("agWord"), choicesEl = $("agChoices"), msgEl = $("agMsg");
+  var nextBtn = $("agNext"), dotsEl = $("agDots");
+
+  var game = null, order = [], round = 0, stars = 0, mistakes = 0, locked = false, target = null;
+  var results = [];     // "star" (first try) or "done" (needed help) for each round
+
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  // An emoji, or an image file if the pic contains "." or "/"
+  function picHTML(pic) {
+    return /[.\/]/.test(pic) ? '<img src="' + esc(pic) + '" alt="" draggable="false">' : '<span class="ag-pic" aria-hidden="true">' + esc(pic) + "</span>";
+  }
+
+  function show(which) {
+    menu.hidden = which !== "menu";
+    gameEl.hidden = which !== "game";
+    endEl.hidden = which !== "end";
+  }
+
+  /* ---- menu ---- */
+  gamesEl.innerHTML = GAMES.map(function (g) {
+    return '<button class="ag-gamebtn" type="button" data-id="' + g.id + '"><span aria-hidden="true">' + g.icon + "</span>" + esc(g.title) + "</button>";
+  }).join("");
+  gamesEl.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-id]");
+    if (b) startGame(b.getAttribute("data-id"));
+  });
+
+  /* ---- a game ---- */
+  function startGame(id) {
+    game = GAMES.filter(function (g) { return g.id === id; })[0];
+    var idx = shuffle(game.items.map(function (_, i) { return i; }));
+    order = idx.slice(0, Math.min(ROUNDS, game.items.length));
+    round = 0; stars = 0; results = [];
+    show("game");
+    showRound();
+  }
+
+  function renderDots() {
+    dotsEl.innerHTML = order.map(function (_, i) {
+      var cls = i < results.length ? (results[i] === "star" ? "ag-star" : "ag-done") : (i === round ? "ag-now" : "");
+      var txt = i < results.length ? (results[i] === "star" ? "⭐" : "✓") : "";
+      return '<span class="ag-dot ' + cls + '">' + txt + "</span>";
+    }).join("");
+  }
+
+  function showRound() {
+    target = game.items[order[round]];
+    mistakes = 0; locked = false;
+    var others = shuffle(game.items.filter(function (it) { return it !== target; })).slice(0, 3);
+    var choices = shuffle([target].concat(others));
+    var showWords = wordsBox.checked;
+
+    qEl.textContent = game.question;
+    wordEl.textContent = target.word;
+    msgEl.textContent = "";
+    nextBtn.hidden = true;
+    renderDots();
+
+    choicesEl.innerHTML = choices.map(function (it, i) {
+      return '<button class="ag-choice" type="button" data-i="' + game.items.indexOf(it) + '" aria-label="' + esc(showWords ? it.word : "Picture " + (i + 1)) + '">' +
+        picHTML(it.pic) + (showWords ? '<span class="ag-label">' + esc(it.word) + "</span>" : "") + "</button>";
+    }).join("");
+
+  }
+
+  choicesEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".ag-choice");
+    if (!b || locked || b.disabled) return;
+    var item = game.items[parseInt(b.getAttribute("data-i"), 10)];
+    if (item === target) {
+      locked = true;
+      b.classList.add("ag-right");
+      results.push(mistakes === 0 ? "star" : "done");
+      if (mistakes === 0) stars++;
+      msgEl.textContent = "Yes! Well done! 🎉";
+      choicesEl.querySelectorAll(".ag-choice").forEach(function (c) { if (c !== b) c.disabled = true; });
+      renderDots();
+      nextBtn.textContent = round === order.length - 1 ? "Finish ➜" : "Next ➜";
+      nextBtn.hidden = false;
+      nextBtn.focus();
+    } else {
+      mistakes++;
+      b.classList.add("ag-wrong");
+      b.disabled = true;
+      msgEl.textContent = "Not this one. Try again!";
+    }
+  });
+
+  nextBtn.addEventListener("click", function () {
+    if (round === order.length - 1) { finish(); return; }
+    round++;
+    showRound();
+  });
+
+  $("agBack").addEventListener("click", function () { show("menu"); });
+
+  function finish() {
+    var n = order.length, s = "";
+    for (var i = 0; i < n; i++) s += i < stars ? "⭐" : "☆";
+    $("agStars").textContent = s;
+    $("agEndTitle").textContent = stars === n ? "Perfect! 🎉" : "Great job! 🎉";
+    $("agEndText").textContent = "You got " + stars + " of " + n + " right the first time.";
+    show("end");
+    $("agAgain").focus();
+  }
+
+  $("agAgain").addEventListener("click", function () { startGame(game.id); });
+  $("agMenuBtn").addEventListener("click", function () { show("menu"); });
+
+}
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", agStart);
+else agStart();
+})();
+</script>
+</html>

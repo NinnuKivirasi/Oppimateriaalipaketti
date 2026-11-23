@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course Title – Educational Material Package</title>
+<meta name="description" content="Short description of the educational material package.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,500;7..72,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+ 
+<body>
+ 
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#">Ninan oppimateriaalipaketti</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Etusivu</a></li>
+        <li><a href="osa2.html">Edellinen</a></li> 
+        <li><a href="osa4.html">Seuraava</a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+ 
+<main id="main">
+  <section class="hero">
+    <div class="headline">
+        <h1>Äänien tutkiminen</h1>
+      </div>
+  </section>
+<section class="sd-section" id="sounds">
+  <div class="sd-wrap">
+  <!-- ===== HERO ===== -->
+
+ 
+    <!-- ===================== PART 1: RECORD AND LISTEN ===================== -->
+    <div class="sd-block" id="sdRecorder">
+      <h2>Tallenna ja kuuntele</h2>
+      <p class="sd-muted"> Paina tallenna ja sano jotain. Paina lopeta ja kuuntele omaa ääntäsi. Tee se hitaammaksi tai nopeammaksi ja kuule mitä tapahtuu!</p>
+
+      <div class="sd-card">
+        <div class="sd-row">
+          <button class="sd-btn sd-rec" id="sdRec" type="button">● Tallenna</button>
+          <span class="sd-dot" aria-hidden="true"></span>
+          <span class="sd-timer" id="sdTimer" aria-hidden="true">0:00</span>
+        </div>
+        <p class="sd-status" id="sdStatus" role="status" aria-live="polite"></p>
+
+        <ul class="sd-takes" id="sdTakes" aria-label="Your recordings"></ul>
+
+        <div class="sd-player" id="sdPlayer" hidden>
+          <div class="sd-row">
+            <button class="sd-btn" id="sdPlay" type="button">▶ Kuuntele</button>
+            <input class="sd-seek" id="sdSeek" type="range" min="0" max="1000" value="0" aria-label="Position in the recording">
+            <span id="sdTime">0:00 / 0:00</span>
+          </div>
+
+          <div class="sd-row">
+            <label for="sdSpeed"><strong>Nopeus</strong></label>
+            <input class="sd-speed" id="sdSpeed" type="range" min="0.5" max="2" step="0.05" value="1">
+            <span class="sd-speedval" id="sdSpeedVal">1×</span>
+          </div>
+
+          <div class="sd-row" role="group" aria-label="Speed presets">
+            <button class="sd-btn sd-ghost" type="button" data-speed="0.5">🐢 Hidas</button>
+            <button class="sd-btn sd-ghost" type="button" data-speed="1">Normaali</button>
+            <button class="sd-btn sd-ghost" type="button" data-speed="1.75">🐇 Nopea</button>
+          </div>
+
+          <div class="sd-row">
+            <label for="sdPitch"><strong>Ääni</strong></label>
+            <span class="sd-end">Matala</span>
+            <input class="sd-speed" id="sdPitch" type="range" min="-8" max="8" step="1" value="0">
+            <span class="sd-end">Korkea</span>
+            <span class="sd-speedval sd-wide" id="sdPitchVal">Normaali</span>
+          </div>
+
+          <div class="sd-row" role="group" aria-label="Voice presets">
+            <button class="sd-btn sd-ghost" type="button" data-pitch="-5">🐻 Matala ääni</button>
+            <button class="sd-btn sd-ghost" type="button" data-pitch="0">Normaali ääni</button>
+            <button class="sd-btn sd-ghost" type="button" data-pitch="5">🐭 Korkea ääni</button>
+          </div>
+
+          <div class="sd-row">
+            <label for="sdVol"><strong>Äänenvoimakkuus</strong></label>
+            <span class="sd-end">Hiljainen</span>
+            <input class="sd-speed" id="sdVol" type="range" min="0" max="1" step="0.05" value="1">
+            <span class="sd-end">Korkea</span>
+          </div>
+
+          <p class="sd-status" id="sdPitchNote" role="status" aria-live="polite"></p>
+        </div>
+
+        <audio id="sdAudio" preload="auto"></audio>
+      </div>
+    </div>
+
+    <!-- ===================== PART 2: GUESS THE SOUND ===================== -->
+    <div class="sd-block" id="sdGameBlock">
+      <h2>Arvaa ääni</h2>
+      <p class="sd-muted">
+        Lisää video jokaiselle kortille (enintään 5 korttia). Voit valita videon tiedoston tai tallentaa sen suoraan tästä.
+        Paina <strong>Toista ääni</strong> ja kysy lapsilta mistä ääni tulee.
+        Kun he ovat arvaaneet, paina <strong>Näytä video</strong> nähdäksesi mistä ääni tulee.
+      </p>
+      <p class="sd-muted">
+        Onko sinulla vain ääni? Paina <strong>Tallenna ääni</strong> tallentaaksesi sen tähän korttiin. Se toistetaan videon oman äänen sijaan.
+      </p>
+      <p class="sd-muted"><small>Tiedostot pysyvät tällä laitteella ja tässä selainvälilehdessä. Jos lataat sivun uudelleen, lisää ne uudelleen.</small></p>
+      <div class="sd-grid" id="sdGrid"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <span>© 2026 Nina Kivirasi. Licence: CC BY 4.0</span>
+    <a href="mailto:contact@example.com">contact@example.com</a>
+  </div>
+</footer>
+</body>
+<script>
+(function () {
+function sdStart() {
+
+  /* ================= helpers ================= */
+  function fmt(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    var m = Math.floor(sec / 60), s = Math.floor(sec % 60);
+    return m + ":" + (s < 10 ? "0" : "") + s;
+  }
+  function play(media) {
+    var p = media.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+
+  /* ================= PART 1: RECORDER ================= */
+  var recBtn = document.getElementById("sdRec");
+  var timerEl = document.getElementById("sdTimer");
+  var statusEl = document.getElementById("sdStatus");
+  var takesEl = document.getElementById("sdTakes");
+  var playerEl = document.getElementById("sdPlayer");
+  var audio = document.getElementById("sdAudio");
+  var playBtn = document.getElementById("sdPlay");
+  var seek = document.getElementById("sdSeek");
+  var timeEl = document.getElementById("sdTime");
+  var speed = document.getElementById("sdSpeed");
+  var speedVal = document.getElementById("sdSpeedVal");
+  var pitch = document.getElementById("sdPitch");
+  var pitchVal = document.getElementById("sdPitchVal");
+  var pitchNote = document.getElementById("sdPitchNote");
+  var vol = document.getElementById("sdVol");
+  var recorderBox = document.getElementById("sdRecorder");
+
+  var MAX_TAKES = 6;
+  var takes = [], current = -1;
+  var recorder = null, stream = null, chunks = [], startTime = 0, timerId = null;
+
+  function say(t) { statusEl.textContent = t; }
+
+  // Explain why the microphone or camera did not start
+  function micMessage(err) {
+    var n = err && err.name;
+    if (window.isSecureContext === false) return "Tallenys toimii vain turvallisella sivulla (https://). Tämä sivu ei ole turvallinen.";
+    if (n === "NotAllowedError" || n === "SecurityError") return "Mikrofoni tai kamera on estetty. Salli se selaimen osoiterivillä (tai sivuston asetuksissa) ja kokeile uudelleen. Jos tämä sivu näkyy toisen sivun sisällä tai esikatselussa, avaa se omassa selainvälilehdessään.";
+    if (n === "NotFoundError" || n === "OverconstrainedError") return "Mikrofonia tai kameraa ei löydy. Kytke jokin käyttöön ja kokeile uudelleen.";
+    if (n === "NotReadableError") return "Mikrofoni tai kamera on toisen ohjelman käytössä. Sulje se ja kokeile uudelleen.";
+    return "Keskeytettiin tallennus. Kokeile toista selainta.";
+  }
+
+  // Tell the user when the recording cannot be played
+  audio.addEventListener("error", function () {
+    if (audio.error) say("Tätä tallennusta ei voi toistaa tässä selaimessa.");
+  });
+
+  function startTimer() {
+    startTime = Date.now();
+    timerEl.textContent = "0:00";
+    timerId = setInterval(function () { timerEl.textContent = fmt((Date.now() - startTime) / 1000); }, 250);
+  }
+
+  function startRecording() {
+    if (cards.some(function (c) { return c.recording(); })) {
+      say("Lopeta tallennus arvauspelissä ensin.");
+      return;
+    }
+    if (!navigator.mediaDevices || !window.MediaRecorder) {
+      say(" Anteeksi, tämä selain ei voi nauhoittaa ääntä. Kokeile Chrome, Edge, Firefox tai Safari osoitteessa https.");
+      return;
+    }
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
+      stream = s;
+      chunks = [];
+      audio.pause();
+      recorder = new MediaRecorder(stream);
+      recorder.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+      recorder.onstop = finishRecording;
+      recorder.start();
+      recorderBox.classList.add("sd-recording");
+      recBtn.textContent = "■ Lopeta";
+      startTimer();
+      say("Nauhoittaa... Sano jotain!!");
+    }).catch(function (err) {
+      say(micMessage(err));
+    });
+  }
+
+  function stopRecording() {
+    if (recorder && recorder.state === "nauhoittaa") recorder.stop();
+  }
+
+  function finishRecording() {
+    clearInterval(timerId);
+    var dur = (Date.now() - startTime) / 1000;
+    stream.getTracks().forEach(function (t) { t.stop(); });
+    recorderBox.classList.remove("sd-recording");
+    recBtn.textContent = "● Tallenna";
+
+    var blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
+    takes.push({ url: URL.createObjectURL(blob), dur: dur, n: (takes.length ? takes[takes.length - 1].n : 0) + 1 });
+    if (takes.length > MAX_TAKES) { URL.revokeObjectURL(takes.shift().url); }
+    renderTakes();
+    selectTake(takes.length - 1);
+    say("Valmis! Paina \"Toista\" kuunnellaksesi.");
+  }
+
+  recBtn.addEventListener("click", function () {
+    if (recorder && recorder.state === "nauhoittaa") stopRecording(); else startRecording();
+  });
+
+  function renderTakes() {
+    takesEl.innerHTML = "";
+    takes.forEach(function (t, i) {
+      var li = document.createElement("li");
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "sd-btn sd-ghost";
+      b.textContent = "Recording " + t.n + " (" + fmt(t.dur) + ")";
+      b.setAttribute("aria-pressed", String(i === current));
+      b.addEventListener("click", function () { selectTake(i); });
+      li.appendChild(b);
+      takesEl.appendChild(li);
+    });
+  }
+
+  function selectTake(i) {
+    current = i;
+    pitchToken++;
+    pendingResume = null;
+    audio.pause();
+    if (processedUrl) { URL.revokeObjectURL(processedUrl); processedUrl = null; }
+    audio.src = takes[i].url;
+    applySpeed();
+    playerEl.hidden = false;
+    playBtn.textContent = "▶ Kuuntele";
+    seek.value = 0;
+    timeEl.textContent = "0:00 / " + fmt(takes[i].dur);
+    renderTakes();
+    if (parseInt(pitch.value, 10) !== 0) applyPitch();
+  }
+
+  /* ---- speed (the voice stays the same when you change the speed) ---- */
+  function applySpeed() {
+    var r = parseFloat(speed.value);
+    audio.defaultPlaybackRate = r;       // survives a new src
+    audio.playbackRate = r;
+    audio.preservesPitch = true;
+    audio.webkitPreservesPitch = true;
+    audio.mozPreservesPitch = true;
+    speedVal.textContent = (Math.round(r * 100) / 100) + "×";
+  }
+  speed.addEventListener("input", applySpeed);
+  document.querySelectorAll("[data-speed]").forEach(function (b) {
+    b.addEventListener("click", function () { speed.value = b.getAttribute("data-speed"); applySpeed(); });
+  });
+
+  /* ---- volume ---- */
+  vol.addEventListener("input", function () { audio.volume = parseFloat(vol.value); });
+
+  /* ---- voice: lower / higher (pitch) ----
+     The recording is re-made with a higher or lower pitch but the same length,
+     then the normal player and speed controls work on that new version. */
+  var ctx = null, processedUrl = null, pitchToken = 0, pendingResume = null;
+
+  function getCtx() {
+    var C = window.AudioContext || window.webkitAudioContext;
+    if (!ctx && C) ctx = new C();
+    return ctx;
+  }
+
+  function decodeTake(t) {
+    if (t.pcm) return Promise.resolve();
+    return fetch(t.url).then(function (r) { return r.arrayBuffer(); }).then(function (buf) {
+      return new Promise(function (ok, fail) {
+        var c = getCtx();
+        if (!c) { fail(); return; }
+        c.decodeAudioData(buf, ok, fail);
+      });
+    }).then(function (ab) {
+      var n = ab.length, mono = new Float32Array(n);
+      for (var ch = 0; ch < ab.numberOfChannels; ch++) {
+        var d = ab.getChannelData(ch);
+        for (var i = 0; i < n; i++) mono[i] += d[i] / ab.numberOfChannels;
+      }
+      t.pcm = mono;
+      t.sr = ab.sampleRate;
+    });
+  }
+
+  // 1) play the sound faster/slower (pitch changes, length changes)
+  function resample(x, p) {
+    var n = Math.floor(x.length / p), out = new Float32Array(n);
+    for (var i = 0; i < n; i++) {
+      var pos = i * p, i0 = Math.floor(pos), f = pos - i0;
+      var a = x[i0], b = i0 + 1 < x.length ? x[i0 + 1] : a;
+      out[i] = a * (1 - f) + b * f;
+    }
+    return out;
+  }
+
+  // 2) stretch it back to the first length without changing the pitch (WSOLA)
+  function stretch(x, alpha) {
+    var W = 1024, Hs = 256, Ha = Hs / alpha, range = 128;
+    var outLen = Math.round(x.length * alpha);
+    var out = new Float32Array(outLen + W), norm = new Float32Array(outLen + W);
+    var win = new Float32Array(W);
+    for (var j = 0; j < W; j++) win[j] = 0.5 - 0.5 * Math.cos((2 * Math.PI * j) / (W - 1));
+    var prev = 0;
+    for (var k = 0; k * Hs < outLen; k++) {
+      var nominal = Math.round(k * Ha), start = nominal;
+      if (nominal >= x.length) break;
+      if (k > 0) {
+        var ref = prev + Hs, best = -Infinity;
+        for (var d = -range; d <= range; d += 2) {
+          var st = nominal + d;
+          if (st < 0 || st >= x.length) continue;
+          var score = 0;
+          for (var m = 0; m < W; m += 4) {
+            var a = st + m, b = ref + m;
+            if (a < x.length && b < x.length) score += x[a] * x[b];
+          }
+          if (score > best) { best = score; start = st; }
+        }
+      }
+      var o = k * Hs;
+      for (var n = 0; n < W; n++) {
+        var idx = start + n;
+        out[o + n] += (idx < x.length ? x[idx] : 0) * win[n];
+        norm[o + n] += win[n];
+      }
+      prev = start;
+    }
+    var res = new Float32Array(outLen);
+    for (var i = 0; i < outLen; i++) res[i] = norm[i] > 0.001 ? out[i] / norm[i] : 0;
+    return res;
+  }
+
+  function toWav(pcm, sr) {
+    var buf = new ArrayBuffer(44 + pcm.length * 2), v = new DataView(buf);
+    function str(o, t) { for (var i = 0; i < t.length; i++) v.setUint8(o + i, t.charCodeAt(i)); }
+    str(0, "RIFF"); v.setUint32(4, 36 + pcm.length * 2, true); str(8, "WAVE"); str(12, "fmt ");
+    v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, sr, true); v.setUint32(28, sr * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+    str(36, "data"); v.setUint32(40, pcm.length * 2, true);
+    for (var i = 0; i < pcm.length; i++) {
+      var x = Math.max(-1, Math.min(1, pcm[i]));
+      v.setInt16(44 + i * 2, x < 0 ? x * 0x8000 : x * 0x7fff, true);
+    }
+    return new Blob([buf], { type: "audio/wav" });
+  }
+
+  // Switch the player to another version of the recording, keeping the place and play state
+  function swapSource(url) {
+    var old = processedUrl;
+    pendingResume = { pos: audio.currentTime || 0, play: !audio.paused };
+    audio.src = url;
+    applySpeed();
+    processedUrl = (current >= 0 && url === takes[current].url) ? null : url;
+    if (old && old !== processedUrl) URL.revokeObjectURL(old);
+  }
+
+  function finishResume() {
+    if (!pendingResume) return;
+    var r = pendingResume;
+    pendingResume = null;
+    if (r.pos) audio.currentTime = Math.min(r.pos, duration() || r.pos);
+    if (r.play) play(audio);
+  }
+
+  function pitchLabel(st) {
+    pitchVal.textContent = st === 0 ? "Normaali" : st > 0 ? "Korkeampi +" + st : "Matalampi −" + Math.abs(st);
+  }
+
+  function applyPitch() {
+    var st = parseInt(pitch.value, 10);
+    pitchLabel(st);
+    if (current < 0) return;
+    var t = takes[current], token = ++pitchToken;
+    if (st === 0) { pitchNote.textContent = ""; swapSource(t.url); return; }
+    pitchNote.textContent = "Muuttaa ääntä…";
+    decodeTake(t).then(function () {
+      return new Promise(function (r) { setTimeout(r, 30); });   // let the message show first
+    }).then(function () {
+      if (token !== pitchToken) return;
+      var p = Math.pow(2, st / 12);
+      var url = URL.createObjectURL(toWav(stretch(resample(t.pcm, p), p), t.sr));
+      if (token !== pitchToken) { URL.revokeObjectURL(url); return; }
+      swapSource(url);
+      pitchNote.textContent = "";
+    }).catch(function () {
+      if (token === pitchToken) pitchNote.textContent = "Anteeksi, tämä selain ei voi muuttaa ääntä.";
+    });
+  }
+
+  pitch.addEventListener("input", function () { pitchLabel(parseInt(pitch.value, 10)); });
+  pitch.addEventListener("change", applyPitch);
+  document.querySelectorAll("[data-pitch]").forEach(function (b) {
+    b.addEventListener("click", function () { pitch.value = b.getAttribute("data-pitch"); applyPitch(); });
+  });
+
+  function duration() {
+    if (isFinite(audio.duration) && audio.duration > 0) return audio.duration;
+    return current >= 0 ? takes[current].dur : 0;
+  }
+
+  // Recorded files sometimes report an endless length until they are played once
+  audio.addEventListener("loadedmetadata", function () {
+    if (audio.duration === Infinity) {
+      audio.currentTime = 1e101;
+      audio.addEventListener("timeupdate", function fix() {
+        audio.removeEventListener("timeupdate", fix);
+        audio.currentTime = 0;
+        finishResume();
+      });
+    } else {
+      finishResume();
+    }
+  });
+
+  playBtn.addEventListener("click", function () {
+    if (audio.paused) {
+      if (audio.ended) audio.currentTime = 0;
+      applySpeed();
+      play(audio);
+    } else {
+      audio.pause();
+    }
+  });
+  audio.addEventListener("play", function () { playBtn.textContent = "❚❚ Pysäytä"; });
+  audio.addEventListener("pause", function () { playBtn.textContent = "▶ Kuuntele"; });
+  audio.addEventListener("ended", function () { playBtn.textContent = "▶ Kuuntele"; });
+
+  audio.addEventListener("timeupdate", function () {
+    var d = duration();
+    if (!d) return;
+    var pos = Math.min(audio.currentTime, d);
+    seek.value = Math.round((pos / d) * 1000);
+    timeEl.textContent = fmt(pos) + " / " + fmt(d);
+  });
+  seek.addEventListener("input", function () {
+    var d = duration();
+    if (d) audio.currentTime = (seek.value / 1000) * d;
+  });
+
+
+  /* ================= PART 2: GUESS THE SOUND ================= */
+  var COUNT = 5;                       // number of cards (change if you like)
+  var grid = document.getElementById("sdGrid");
+  var cards = [];
+
+  function stopAll() { cards.forEach(function (c) { c.stop(); }); }
+
+  function createCard(i) {
+    var el = document.createElement("article");
+    el.className = "sd-card";
+    el.innerHTML =
+      '<h3>Ääni ' + (i + 1) + '</h3>' +
+      '<label class="sd-field">Video file' +
+        '<input type="file" accept="video/*" data-role="video"></label>' +
+      '<div class="sd-rec-row" role="group" aria-label="Tallenna suoraan tähän korttiin">' +
+        '<button class="sd-btn sd-ghost" type="button" data-role="recvideo">📹 Tallenna video</button>' +
+        '<button class="sd-btn sd-ghost" type="button" data-role="recsound">🎤 Tallenna ääni</button>' +
+        '<button class="sd-btn sd-rec" type="button" data-role="recstop" hidden>■ Pysäytä <span data-role="rectime">0:00</span></button>' +
+      '</div>' +
+      '<p class="sd-cstatus" role="status" aria-live="polite" data-role="cstatus"></p>' +
+      '<div class="sd-stage">' +
+        '<video playsinline preload="auto"></video>' +
+        '<div class="sd-cover"><span aria-hidden="true">?</span><small>Mitä kuulet?</small></div>' +
+      '</div>' +
+      '<div class="sd-actions">' +
+        '<button class="sd-btn" type="button" data-role="play" disabled>🔊 Toista ääni</button>' +
+        '<button class="sd-btn sd-ghost" type="button" data-role="show" disabled>👀 Näytä video</button>' +
+        '<button class="sd-link" type="button" data-role="clearsound" hidden>Poista tallennettu ääni</button>' +
+        '<button class="sd-link" type="button" data-role="clear">Clear card</button>' +
+      '</div>' +
+      '<details class="sd-notes">' +
+        '<summary>📝Muistiinpanot (lapset eivät näe tätä)</summary>' +
+        '<textarea data-role="notes" maxlength="500" aria-label="Notes for the educator, sound ' + (i + 1) + '" ' +
+          'placeholder="For example: dog barking, file dog.mp4"></textarea>' +
+        '<small>Tallennettu tähän laitteeseen, joten voit muistaa, mikä ääni ja video tällä kortilla tarvitaan.</small>' +
+      '</details>';
+    grid.appendChild(el);
+
+    var q = function (r) { return el.querySelector('[data-role="' + r + '"]'); };
+    var video = el.querySelector("video");
+    var cover = el.querySelector(".sd-cover");
+    var cstatus = q("cstatus");
+    var playB = q("play"), showB = q("show");
+    var recVideoB = q("recvideo"), recSoundB = q("recsound"), recStopB = q("recstop"), recTime = q("rectime");
+    var clearSoundB = q("clearsound"), clearB = q("clear");
+    var videoInput = q("video");
+    var notes = q("notes"), notesKey = "sd-notes-" + i;
+
+    var s = {
+      videoUrl: null, audioUrl: null, audioEl: null,
+      revealed: false, soundOn: false,
+      rec: null, stream: null, kind: "", chunks: [], timer: null, t0: 0
+    };
+
+    function isRecording() { return !!(s.rec && s.rec.state === "recording"); }
+    function note(t) { cstatus.textContent = t; }
+
+    function refresh() {
+      var rec = isRecording();
+      var has = !!(s.videoUrl || s.audioUrl);
+      playB.disabled = rec || !has;
+      showB.disabled = rec || !s.videoUrl;
+      recVideoB.disabled = recSoundB.disabled = rec;
+      clearB.disabled = rec;
+      recStopB.hidden = !rec;
+      clearSoundB.hidden = !s.audioUrl || rec;
+      playB.textContent = s.soundOn ? "⏹ Pysäytä ääni" : "🔊 Toista ääni";
+      showB.textContent = s.revealed ? "🙈 Piilota video" : "👀 Näytä video";
+    }
+
+    function stop() {
+      video.pause();
+      if (s.audioEl) s.audioEl.pause();
+      s.soundOn = false;
+      refresh();
+    }
+    function onEnded() { stop(); }
+    video.addEventListener("ended", onEnded);
+    video.addEventListener("error", function () {
+      if (!video.error || !video.getAttribute("src")) return;
+      stop();
+      note("Tätä videota ei voi toistaa tässä selaimessa. Kokeile MP4 (H.264) tai WebM tiedostoa.");
+    });
+
+    // Covered = children can only hear. Uncovered = they can see the video.
+    function setCover(show) {
+      s.revealed = show;
+      cover.hidden = show && !!s.videoUrl;
+    }
+
+    function setVideo(url) {
+      if (s.videoUrl) URL.revokeObjectURL(s.videoUrl);
+      s.videoUrl = url;
+      video.srcObject = null;
+      video.muted = false;
+      if (url) video.src = url; else { video.removeAttribute("src"); video.load(); }
+      setCover(false);
+    }
+
+    function setSound(url) {
+      if (s.audioUrl) URL.revokeObjectURL(s.audioUrl);
+      s.audioUrl = url;
+      s.audioEl = url ? new Audio(url) : null;
+      if (s.audioEl) s.audioEl.addEventListener("ended", onEnded);
+    }
+
+    /* ---- choose a video file ---- */
+    videoInput.addEventListener("change", function () {
+      var f = videoInput.files[0];
+      stopAll();
+      setVideo(f ? URL.createObjectURL(f) : null);
+      refresh();
+    });
+
+    /* ---- record directly in the card ---- */
+    function anyRecording() {
+      return (recorder && recorder.state === "tallentaa") || cards.some(function (c) { return c.recording(); });
+    }
+
+    function startRec(kind) {
+      if (anyRecording()) { note("Pysäytä muu tallennus ensin."); return; }
+      if (!navigator.mediaDevices || !window.MediaRecorder) {
+        note("Anteeksi, tämä selain ei voi tallentaa. Kokeile Chrome, Edge, Firefox tai Safari osoitteessa https.");
+        return;
+      }
+      stopAll();
+      audio.pause();
+      var constraints = kind === "video" ? { audio: true, video: true } : { audio: true };
+      navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
+        s.stream = stream; s.kind = kind; s.chunks = [];
+        s.rec = new MediaRecorder(stream);
+        s.rec.ondataavailable = function (e) { if (e.data && e.data.size) s.chunks.push(e.data); };
+        s.rec.onstop = finishRec;
+        s.rec.start();
+        if (kind === "video") {          // show a live picture while recording
+          video.srcObject = stream;
+          video.muted = true;            // muted so there is no echo
+          play(video);
+          cover.hidden = true;
+        }
+        s.t0 = Date.now();
+        recTime.textContent = "0:00";
+        s.timer = setInterval(function () { recTime.textContent = fmt((Date.now() - s.t0) / 1000); }, 250);
+        note(kind === "video" ? "Tallennetaan video…" : "Tallennetaan ääntä…");
+        refresh();
+      }).catch(function (err) {
+        note(micMessage(err));
+      });
+    }
+
+    function finishRec() {
+      clearInterval(s.timer);
+      s.stream.getTracks().forEach(function (t) { t.stop(); });
+      var type = s.rec.mimeType || (s.kind === "video" ? "video/webm" : "audio/webm");
+      var url = URL.createObjectURL(new Blob(s.chunks, { type: type }));
+      if (s.kind === "video") {
+        setVideo(url);
+        note("Video tallennettu tähän korttiin.");
+      } else {
+        setSound(url);
+        if (!s.videoUrl) { video.srcObject = null; }
+        note("Ääni tallennettu. Paina Toista ääni kuunnellaksesi.");
+      }
+      s.rec = null;
+      refresh();
+    }
+
+    recVideoB.addEventListener("click", function () { startRec("video"); });
+    recSoundB.addEventListener("click", function () { startRec("sound"); });
+    recStopB.addEventListener("click", function () { if (isRecording()) s.rec.stop(); });
+
+    /* ---- play only the sound (picture stays covered) ---- */
+    playB.addEventListener("click", function () {
+      if (s.soundOn) { stop(); return; }
+      stopAll();
+      var src = s.audioEl || video;
+      src.currentTime = 0;
+      play(src);
+      s.soundOn = true;
+      refresh();
+    });
+
+    /* ---- show the video ---- */
+    showB.addEventListener("click", function () {
+      if (s.revealed) { stopAll(); setCover(false); refresh(); return; }
+      stopAll();
+      setCover(true);
+      video.currentTime = 0;
+      play(video);
+      refresh();
+    });
+
+    clearSoundB.addEventListener("click", function () {
+      stopAll();
+      setSound(null);
+      note("Tallennettu ääni poistettu.");
+      refresh();
+    });
+
+    clearB.addEventListener("click", function () {
+      stopAll();
+      setVideo(null);
+      setSound(null);
+      videoInput.value = "";
+      notes.value = "";
+      try { localStorage.removeItem(notesKey); } catch (e) {}
+      note("Tallennus poistettu.");
+      setCover(false);
+      refresh();
+    });
+
+    /* ---- notes for the educator (kept in this browser, even after a reload) ---- */
+    try {
+      var saved = localStorage.getItem(notesKey);
+      if (saved) { notes.value = saved; el.querySelector(".sd-notes").open = true; }
+    } catch (e) {}
+    notes.addEventListener("input", function () {
+      try { localStorage.setItem(notesKey, notes.value); } catch (e) {}
+    });
+
+    cards.push({ stop: stop, recording: isRecording });
+  }
+
+  for (var i = 0; i < COUNT; i++) createCard(i);
+
+  // Only one thing plays at a time: the recording player stops the cards...
+  audio.addEventListener("play", stopAll);
+  // ...and starting a card stops the recording player
+  grid.addEventListener("click", function (e) {
+    if (e.target.closest('[data-role="play"], [data-role="show"]')) audio.pause();
+  });
+
+}
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", sdStart);
+else sdStart();
+})();
+</script>
+</html>

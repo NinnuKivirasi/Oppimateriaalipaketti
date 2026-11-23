@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course Title – Educational Material Package</title>
+<meta name="description" content="Short description of the educational material package.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Literata:opsz,wght@7..72,500;7..72,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+</head>
+ 
+<body>
+ 
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="#">Ninan oppimateriaalipaketti</a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Etusivu</a></li>
+        <li><a href="osa3.html">Edellinen</a></li> 
+        <li><a href="osa5.html">Seuraava</a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+ 
+<main id="main">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="headline">
+        <h1>Kuvien tutkiminen</h1>
+      </div>
+  </section>
+ 
+    <!-- ===== CONTENTS ===== -->
+ 
+
+<section class="ph-section" id="pictures">
+  <div class="ph-wrap">
+
+    <!-- ===================== PART 1: FIND THE SMALL PICTURE ===================== -->
+    <div class="ph-block" id="phFind">
+      <h2>Etsi pieni kuva</h2>
+      <p class="ph-muted">
+        <strong>Aikuinen:</strong> ota iso kuva, sitten ota pieniä kuvia asioista siinä ja merkkaa missä kukin on.
+        <strong>Lapset:</strong> katso pientä kuvaa ja napauta paikka, jossa se löytyy suuresta kuvasta.
+      </p>
+
+      <div class="ph-modes" role="group" aria-label="Who is using this">
+        <button class="ph-btn" type="button" data-act="mode" data-mode="setup" aria-pressed="true">🧑‍🏫 Aikuinen: set up</button>
+        <button class="ph-btn" type="button" data-act="mode" data-mode="play" aria-pressed="false">🧒 Lapset: play</button>
+      </div>
+
+      <div class="ph-card">
+        <div class="ph-tabs" id="phTabs" role="group" aria-label="Pictures"></div>
+        <div id="phStageWrap"></div>
+        <p class="ph-msg" id="phMsg" role="status" aria-live="polite"></p>
+        <div id="phPanel"></div>
+      </div>
+    </div>
+
+    <!-- ===================== PART 2: MY CAMERA PICTURE ===================== -->
+    <div class="ph-block" id="phCamBlock">
+      <h2>Minun kamerakuva</h2>
+      <p class="ph-muted">Ota 1-3 kuvaa. Ne tulevat sivulle, jossa on kamera. Tulosta sivu ja maalaa kamera itse!</p>
+
+      <div class="ph-card">
+        <div class="ph-slots" id="phSlots"></div>
+
+        <div class="ph-row">
+          <label for="phName"><strong>Minun nimeni</strong></label>
+          <input class="ph-name" id="phName" type="text" maxlength="30" placeholder="Kirjoita nimesi">
+          <label class="ph-check"><input type="checkbox" id="phBW" checked> <span>Mustavalkoinen (käyttää vähemmän mustetta)</span></label>
+        </div>
+
+        <div class="ph-sheet ph-bw" id="phSheet">
+          <h3>Kuvat käyttäjältä <span id="phNameOut">__________</span></h3>
+          <svg viewBox="0 0 420 280" role="img" aria-label="A camera to colour" fill="#fff" stroke="#000" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M135 72 L158 28 H262 L285 72 Z"/>
+            <rect x="318" y="38" width="52" height="34" rx="9"/>
+            <rect x="18" y="72" width="384" height="190" rx="30"/>
+            <rect x="44" y="98" width="64" height="40" rx="9"/>
+            <circle cx="210" cy="168" r="80"/>
+            <circle cx="210" cy="168" r="56"/>
+            <circle cx="210" cy="168" r="30"/>
+            <circle cx="188" cy="146" r="9"/>
+            <circle cx="356" cy="112" r="15"/>
+            <circle cx="356" cy="166" r="10"/>
+            <path d="M44 232 H110 M300 232 H376"/>
+          </svg>
+          <p class="ph-sheet-note">Maalaa kamera ja kuvakehykset!</p>
+          <div class="ph-pols" id="phPols" data-n="0"></div>
+        </div>
+
+        <div class="ph-row" style="margin-top:1rem">
+          <button class="ph-btn" type="button" id="phPrint" disabled>🖨 Tulosta sivu</button>
+          <span class="ph-muted" id="phPrintNote">Ota ensin vähintään yksi kuva.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Camera pop-up used by both parts -->
+<dialog class="ph-dialog" id="phCam" aria-labelledby="phCamTitle">
+  <h3 id="phCamTitle">Ota kuva</h3>
+  <video id="phCamVideo" playsinline muted></video>
+  <p class="ph-msg" id="phCamMsg" role="status" aria-live="polite"></p>
+  <div class="ph-row">
+    <button class="ph-btn" type="button" id="phCamShot" disabled>📸 Ota kuva</button>
+    <label class="ph-btn ph-ghost">📁 Valitse kuva<input class="ph-vh" type="file" accept="image/*" id="phCamFile"></label>
+    <button class="ph-btn ph-ghost" type="button" id="phCamCancel">Peruuta</button>
+  </div>
+</dialog>
+ 
+</main>
+ 
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <span>© 2026 Nina Kivirasi. Licence: CC BY 4.0</span>
+    <a href="mailto:contact@example.com">contact@example.com</a>
+  </div>
+</footer>
+</body>
+<script>
+(function () {
+function phStart() {
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ================= camera pop-up (shared) ================= */
+  var dlg = $("phCam"), vid = $("phCamVideo"), camMsg = $("phCamMsg"), camFile = $("phCamFile");
+  var stream = null, onPicture = null;
+
+  // Shrink big pictures so they do not use too much memory
+  function fit(src, max) {
+    var w = src.naturalWidth || src.videoWidth, h = src.naturalHeight || src.videoHeight;
+    var k = Math.min(1, max / Math.max(w, h));
+    var c = document.createElement("canvas");
+    c.width = Math.round(w * k); c.height = Math.round(h * k);
+    c.getContext("2d").drawImage(src, 0, 0, c.width, c.height);
+    return c.toDataURL("image/jpeg", 0.85);
+  }
+
+  function stopStream() {
+    if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
+    vid.srcObject = null;
+  }
+
+  function camError(err) {
+    var n = err && err.name;
+    if (window.isSecureContext === false) return "The camera only works on a secure page (https://). You can still press “Choose a picture”.";
+    if (n === "NotAllowedError" || n === "SecurityError") return "The camera is blocked. Allow it in the browser, or open this page in its own tab. You can also press “Choose a picture”.";
+    if (n === "NotReadableError") return "Another program is using the camera. Close it and try again.";
+    return "No camera was found. You can press “Choose a picture”.";
+  }
+
+  function openCamera(title, cb) {
+    onPicture = cb;
+    $("phCamTitle").textContent = title;
+    camMsg.textContent = "";
+    $("phCamShot").disabled = true;
+    dlg.showModal();
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { camMsg.textContent = camError(); return; }
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } }, audio: false }).then(function (s) {
+      if (!dlg.open) { s.getTracks().forEach(function (t) { t.stop(); }); return; }
+      stream = s; vid.srcObject = s;
+      var p = vid.play(); if (p && p.catch) p.catch(function () {});
+    }).catch(function (err) { camMsg.textContent = camError(err); });
+  }
+
+  function gotPicture(data) {
+    var cb = onPicture; onPicture = null;
+    stopStream(); dlg.close();
+    if (cb) cb(data);
+  }
+
+  // The button works only when the live picture is really showing
+  vid.addEventListener("playing", function () { $("phCamShot").disabled = !vid.videoWidth; });
+  $("phCamShot").addEventListener("click", function () { if (vid.videoWidth) gotPicture(fit(vid, 1280)); });
+  $("phCamCancel").addEventListener("click", function () { onPicture = null; stopStream(); dlg.close(); });
+  dlg.addEventListener("close", function () { onPicture = null; stopStream(); });
+  camFile.addEventListener("change", function () {
+    var f = camFile.files[0];
+    if (!f) return;
+    var url = URL.createObjectURL(f), img = new Image();
+    img.onload = function () { URL.revokeObjectURL(url); camFile.value = ""; gotPicture(fit(img, 1280)); };
+    img.onerror = function () { camMsg.textContent = "This file cannot be opened. Try a JPG or PNG picture."; };
+    img.src = url;
+  });
+
+
+  /* ================= PART 1: FIND THE SMALL PICTURE ================= */
+  var MAX_ITEMS = 5, HIT = 0.08;                     // 5 small pictures per big one; tap must be within 8% of the width
+  var scenes = [0, 1, 2].map(function () { return { big: null, items: [] }; });
+  var cur = 0, mode = "setup", marking = -1, sel = -1, flash = null, flashTimer = null;
+
+  var root = $("phFind"), tabsEl = $("phTabs"), stageWrap = $("phStageWrap"), panel = $("phPanel"), msgEl = $("phMsg");
+
+  function S() { return scenes[cur]; }
+  function placed(it) { return it.x !== null; }
+  function ready(s) { return !!s.big && s.items.some(placed); }
+  function say(t) { msgEl.textContent = t; }
+  function firstOpen() {
+    var it = S().items;
+    for (var i = 0; i < it.length; i++) if (placed(it[i]) && !it[i].found) return i;
+    return -1;
+  }
+  function mark(x, y, cls, text) {
+    return '<span class="ph-mark ' + cls + '" style="left:' + (x * 100) + '%;top:' + (y * 100) + '%">' + text + '</span>';
+  }
+
+  function render() {
+    var sc = S();
+
+    root.querySelectorAll("[data-mode]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-mode") === mode));
+    });
+
+    // in play mode only show pictures that are ready
+    if (mode === "play" && !ready(sc)) {
+      var k = scenes.findIndex(ready);
+      if (k >= 0) { cur = k; sc = S(); }
+    }
+    tabsEl.innerHTML = scenes.map(function (s, i) {
+      if (mode === "play" && !ready(s)) return "";
+      return '<button class="ph-btn ph-ghost" type="button" data-act="tab" data-i="' + i + '" aria-pressed="' + (i === cur) + '">Picture ' + (i + 1) + '</button>';
+    }).join("");
+
+    // big picture
+    if (!sc.big || (mode === "play" && !ready(sc))) {
+      stageWrap.innerHTML = '<div class="ph-empty">' + (mode === "play"
+        ? "Nothing to play yet. Ask the educator to set up a picture."
+        : "No big picture yet. Press “Take big picture”.") + '</div>';
+    } else {
+      var marks = "";
+      sc.items.forEach(function (it, i) {
+        if (!placed(it)) return;
+        if (mode === "setup") marks += mark(it.x, it.y, "", i + 1);
+        else if (it.found) marks += mark(it.x, it.y, "ph-ok", "✓");
+      });
+      if (flash) marks += flash.hint ? mark(flash.x, flash.y, "ph-hint", "") : mark(flash.x, flash.y, flash.ok ? "ph-ok" : "ph-no", flash.ok ? "✓" : "✖");
+      stageWrap.innerHTML = '<div class="ph-stage' + (marking >= 0 ? " ph-marking" : "") + '" id="phStage" aria-label="Big picture">' +
+        '<img src="' + sc.big + '" alt="Big picture" draggable="false">' + marks + '</div>';
+    }
+
+    // buttons below
+    var html = "";
+    if (mode === "setup") {
+      html += '<div class="ph-row">' +
+        '<button class="ph-btn" type="button" data-act="big">📷 ' + (sc.big ? "Retake" : "Take") + ' big picture</button>' +
+        '<button class="ph-btn ph-ghost" type="button" data-act="add"' + (sc.items.length >= MAX_ITEMS ? " disabled" : "") + '>➕ Add small picture (' + sc.items.length + '/' + MAX_ITEMS + ')</button>' +
+        '</div><ul class="ph-items">';
+      sc.items.forEach(function (it, i) {
+        html += '<li class="ph-item"><img src="' + it.img + '" alt="Small picture ' + (i + 1) + '">' +
+          '<div><strong>Small picture ' + (i + 1) + '</strong><br><span class="ph-muted">' + (placed(it) ? "Place marked ✓" : "Place not marked yet") + '</span></div>' +
+          '<button class="ph-btn ph-ghost" type="button" data-act="mark" data-i="' + i + '" aria-pressed="' + (marking === i) + '">📍 Mark place</button>' +
+          '<button class="ph-link" type="button" data-act="rm" data-i="' + i + '">Remove</button></li>';
+      });
+      html += "</ul>";
+    } else if (ready(sc)) {
+      html += '<div class="ph-thumbs" role="group" aria-label="Small pictures">';
+      sc.items.forEach(function (it, i) {
+        if (!placed(it)) return;
+        html += '<button class="ph-thumb' + (it.found ? " ph-found" : "") + '" type="button" data-act="pick" data-i="' + i + '" aria-pressed="' + (sel === i) + '" aria-label="Small picture ' + (i + 1) + (it.found ? ", found" : "") + '"><img src="' + it.img + '" alt=""></button>';
+      });
+      html += '</div><div class="ph-row">' +
+        '<button class="ph-btn ph-ghost" type="button" data-act="hint">💡 Show me</button>' +
+        '<button class="ph-btn ph-ghost" type="button" data-act="again">↺ Start again</button></div>';
+    }
+    panel.innerHTML = html;
+  }
+
+  function setFlash(f, ms) {
+    clearTimeout(flashTimer);
+    flash = f;
+    flashTimer = setTimeout(function () { flash = null; render(); }, ms);
+  }
+
+  function guess(x, y, w, h) {
+    var sc = S();
+    if (sel < 0) { say("First tap a small picture below."); return; }
+    var it = sc.items[sel];
+    if (!it || it.found) return;
+    var dx = (x - it.x) * w, dy = (y - it.y) * h;
+    if (Math.sqrt(dx * dx + dy * dy) <= HIT * w) {
+      it.found = true;
+      sel = firstOpen();
+      say(sel < 0 ? "You found them all! 🎉🎉🎉" : "Yes! You found it! 🎉 Now pick the next small picture.");
+      setFlash({ x: it.x, y: it.y, ok: true }, 1200);
+    } else {
+      say("Not here. Try again!");
+      setFlash({ x: x, y: y, ok: false }, 900);
+    }
+    render();
+  }
+
+  root.addEventListener("click", function (e) {
+    var sc = S();
+    var stage = e.target.closest("#phStage");
+    if (stage) {
+      var r = stage.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      if (mode === "setup") {
+        if (marking < 0) { say("Press “Mark place” on a small picture first."); return; }
+        sc.items[marking].x = x; sc.items[marking].y = y;
+        marking = -1;
+        say("Place marked ✓");
+        render();
+      } else {
+        guess(x, y, r.width, r.height);
+      }
+      return;
+    }
+
+    var b = e.target.closest("[data-act]");
+    if (!b || b.disabled) return;
+    var act = b.getAttribute("data-act"), i = parseInt(b.getAttribute("data-i"), 10);
+
+    if (act === "mode") {
+      mode = b.getAttribute("data-mode");
+      marking = -1; flash = null;
+      if (mode === "play") { sel = firstOpen(); say(sel < 0 && !ready(S()) ? "" : "Tap a small picture, then tap where it is in the big picture."); } else say("");
+      render();
+    } else if (act === "tab") {
+      cur = i; marking = -1; flash = null; sel = firstOpen(); say(""); render();
+    } else if (act === "big") {
+      openCamera("Take the big picture", function (d) {
+        sc.big = d;
+        sc.items.forEach(function (it) { it.x = it.y = null; it.found = false; });
+        marking = -1;
+        say(sc.items.length ? "New big picture. Mark the place of each small picture again." : "Now add small pictures.");
+        render();
+      });
+    } else if (act === "add") {
+      if (!sc.big) { say("Take the big picture first."); return; }
+      openCamera("Take a small picture", function (d) {
+        sc.items.push({ img: d, x: null, y: null, found: false });
+        marking = sc.items.length - 1;
+        say("Now tap on the big picture where this small picture is.");
+        render();
+      });
+    } else if (act === "mark") {
+      marking = (marking === i) ? -1 : i;
+      say(marking >= 0 ? "Tap on the big picture where small picture " + (i + 1) + " is." : "");
+      render();
+    } else if (act === "rm") {
+      sc.items.splice(i, 1); marking = -1; sel = -1; say(""); render();
+    } else if (act === "pick") {
+      sel = i; say("Now tap where it is in the big picture."); render();
+    } else if (act === "hint") {
+      if (sel < 0) { say("First tap a small picture below."); return; }
+      var it = sc.items[sel];
+      if (it && !it.found) { setFlash({ x: it.x, y: it.y, hint: true }, 2500); render(); }
+    } else if (act === "again") {
+      sc.items.forEach(function (it) { it.found = false; });
+      sel = firstOpen(); flash = null;
+      say("Let's play again!"); render();
+    }
+  });
+
+  render();
+
+
+  /* ================= PART 2: MY CAMERA PICTURE ================= */
+  var photos = [null, null, null];
+  var slotsEl = $("phSlots"), nameIn = $("phName"), nameOut = $("phNameOut"), polsEl = $("phPols");
+  var sheet = $("phSheet"), bw = $("phBW"), printBtn = $("phPrint"), printNote = $("phPrintNote");
+
+  function renderPhotos() {
+    slotsEl.innerHTML = photos.map(function (p, i) {
+      return '<div class="ph-slot"><div class="ph-slot-img">' + (p ? '<img src="' + p + '" alt="My picture ' + (i + 1) + '">' : "<span>Picture " + (i + 1) + "</span>") + '</div>' +
+        '<button class="ph-btn' + (p ? " ph-ghost" : "") + '" type="button" data-b="take" data-i="' + i + '">📷 ' + (p ? "Take again" : "Take picture") + '</button>' +
+        (p ? '<button class="ph-link" type="button" data-b="rm" data-i="' + i + '">Remove</button>' : "") + '</div>';
+    }).join("");
+
+    var list = photos.filter(Boolean);
+    polsEl.setAttribute("data-n", String(list.length));
+    polsEl.innerHTML = list.length
+      ? list.map(function (p, i) { return '<div class="ph-pol"><img src="' + p + '" alt="Picture ' + (i + 1) + ' on the page"></div>'; }).join("")
+      : '<p class="ph-sheet-empty">Your pictures will show here.</p>';
+    printBtn.disabled = !list.length;
+    printNote.textContent = list.length ? "" : "Take at least one picture first.";
+  }
+
+  slotsEl.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-b]");
+    if (!b) return;
+    var i = parseInt(b.getAttribute("data-i"), 10);
+    if (b.getAttribute("data-b") === "rm") { photos[i] = null; renderPhotos(); return; }
+    openCamera("Take picture " + (i + 1), function (d) { photos[i] = d; renderPhotos(); });
+  });
+
+  nameIn.addEventListener("input", function () { nameOut.textContent = nameIn.value.trim() || "__________"; });
+  bw.addEventListener("change", function () { sheet.classList.toggle("ph-bw", bw.checked); });
+
+  // Print only the page with the camera: copy it to the end of the body and hide everything else while printing
+  function cleanPrint() {
+    var r = $("phPrintRoot"), s = $("phPrintStyle");
+    if (r) r.remove();
+    if (s) s.remove();
+  }
+  printBtn.addEventListener("click", function () {
+    cleanPrint();
+    var rootEl = document.createElement("div");
+    rootEl.id = "phPrintRoot";
+    var copy = sheet.cloneNode(true);
+    copy.removeAttribute("id");
+    rootEl.appendChild(copy);
+    document.body.appendChild(rootEl);
+    var st = document.createElement("style");
+    st.id = "phPrintStyle";
+    st.textContent = "@media print { body > *:not(#phPrintRoot) { display: none !important; } #phPrintRoot { display: block !important; } @page { margin: 12mm; } }";
+    document.head.appendChild(st);
+    window.addEventListener("afterprint", cleanPrint, { once: true });
+    window.print();
+  });
+
+  renderPhotos();
+}
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", phStart);
+else phStart();
+})();
+</script>
+</html>
