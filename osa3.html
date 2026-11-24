@@ -171,7 +171,7 @@ function sdStart() {
   // Explain why the microphone or camera did not start
   function micMessage(err) {
     var n = err && err.name;
-    if (window.isSecureContext === false) return "Tallenys toimii vain turvallisella sivulla (https://). Tämä sivu ei ole turvallinen.";
+    if (window.isSecureContext === false) return "Tallenus toimii vain turvallisella sivulla (https://). Tämä sivu ei ole turvallinen.";
     if (n === "NotAllowedError" || n === "SecurityError") return "Mikrofoni tai kamera on estetty. Salli se selaimen osoiterivillä (tai sivuston asetuksissa) ja kokeile uudelleen. Jos tämä sivu näkyy toisen sivun sisällä tai esikatselussa, avaa se omassa selainvälilehdessään.";
     if (n === "NotFoundError" || n === "OverconstrainedError") return "Mikrofonia tai kameraa ei löydy. Kytke jokin käyttöön ja kokeile uudelleen.";
     if (n === "NotReadableError") return "Mikrofoni tai kamera on toisen ohjelman käytössä. Sulje se ja kokeile uudelleen.";
@@ -216,7 +216,7 @@ function sdStart() {
   }
 
   function stopRecording() {
-    if (recorder && recorder.state === "nauhoittaa") recorder.stop();
+    if (recorder && recorder.state === "recording") recorder.stop();
   }
 
   function finishRecording() {
@@ -235,7 +235,7 @@ function sdStart() {
   }
 
   recBtn.addEventListener("click", function () {
-    if (recorder && recorder.state === "nauhoittaa") stopRecording(); else startRecording();
+    if (recorder && recorder.state === "recording") stopRecording(); else startRecording();
   });
 
   function renderTakes() {

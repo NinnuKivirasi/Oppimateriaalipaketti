@@ -87,10 +87,10 @@
 
           <div class="tb-row" role="group" aria-label="Vaihda muotoa">
             <p class="tb-label">Vaihda muotoa</p>
-            <button class="tb-btn" data-shape="pyöreä" aria-pressed="true">Pyöreä</button>
-            <button class="tb-btn" data-shape="neliö" aria-pressed="false">Neliö</button>
-            <button class="tb-btn" data-shape="kolmio" aria-pressed="false">Kolmio</button>
-            <button class="tb-btn" data-shape="tähti" aria-pressed="false">Tähti</button>
+            <button class="tb-btn" data-shape="circle" aria-pressed="true">Pyöreä</button>
+            <button class="tb-btn" data-shape="square" aria-pressed="false">Neliö</button>
+            <button class="tb-btn" data-shape="triangle" aria-pressed="false">Kolmio</button>
+            <button class="tb-btn" data-shape="star" aria-pressed="false">Tähti</button>
           </div>
 
           <div class="tb-row" role="group" aria-label="Vaihda väriä">
@@ -148,14 +148,16 @@
 </footer>
 </body>
 <script>
+/* TABLET SECTION - script */
+
 (function () {
   var colours = [
-    { hex: "#e53935", name: "punainen" },
-    { hex: "#1e88e5", name: "sininen" },
-    { hex: "#43a047", name: "vihreä" },
-    { hex: "#fdd835", name: "keltainen" },
-    { hex: "#ec407a", name: "vaaleanpunainen" },
-    { hex: "#fb8c00", name: "oranssi" }
+    { hex: "#e53935", name: "red" },
+    { hex: "#1e88e5", name: "blue" },
+    { hex: "#43a047", name: "green" },
+    { hex: "#fdd835", name: "yellow" },
+    { hex: "#ec407a", name: "pink" },
+    { hex: "#fb8c00", name: "orange" }
   ];
   var MAX = 12;   // most shapes allowed on the screen (change if you like)
 
@@ -251,7 +253,7 @@
   function newShape() {
     box.innerHTML = "";
     var el = document.createElement("button");
-    el.setAttribute("aria-label", "Muoto. Paina sitä, niin se kopioituu.");
+    el.setAttribute("aria-label", "Shape. Tap it to make another one.");
     paint(el);
     box.appendChild(el);
     resize();
@@ -260,7 +262,7 @@
 
   function setAriaForMode() {
     all().forEach(function (el) {
-      el.setAttribute("aria-label", popping ? "Muoto. Paina sitä, niin se poksahtaa." : "Muoto. Paina sitä, niin se kopioituu.");
+      el.setAttribute("aria-label", popping ? "Shape. Tap it to pop it." : "Shape. Tap it to make another one.");
     });
   }
 
@@ -281,9 +283,9 @@
       if (left <= 1) {
         popping = false;
         setAriaForMode();
-        say("Pop! Yksi muoto on jäljellä. Paina sitä, niin se kopioituu!");
+        say("Pop! One shape is left. Tap it to make more!");
       } else {
-        say("Pop! " + left + " muotoa jäljellä.");
+        say("Pop! " + left + " shapes left.");
       }
       return;
     }
@@ -292,7 +294,7 @@
     box.appendChild(copy);
     resize();
     pop(copy);
-    say("Nyt niitä on " + all().length + " !");
+    say("Now there are " + all().length + " shapes!");
   });
 
   // Shape buttons change the SHAPE of every shape
@@ -300,7 +302,7 @@
     btn.addEventListener("click", function () {
       currentShape = btn.getAttribute("data-shape");
       paintAll();
-      say("Muoto on " + currentShape + "!");
+      say("They are " + currentShape + "s now!");
     });
   });
 
@@ -309,7 +311,7 @@
     btn.addEventListener("click", function () {
       shapeColour = Number(btn.getAttribute("data-colour"));
       paintAll();
-      say("Väri on " + colours[shapeColour].name + "!");
+      say("They are " + colours[shapeColour].name + "!");
     });
   });
 
@@ -322,7 +324,7 @@
     shapeColour = 0; currentShape = "circle";
     newShape();
     showButtons();
-    say("Kaikki valmiina. Yritä uudelleen!");
+    say("All clear. Try again!");
   });
 
   paint(all()[0]);
